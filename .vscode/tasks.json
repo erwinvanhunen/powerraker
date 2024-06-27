@@ -1,0 +1,14 @@
+{
+    "tasks": [
+        {
+            "label": "Build and Install",
+            "type": "shell",
+            "command":"${cwd}/build/Build-Debug.ps1",
+            "problemMatcher":"$msCompile",
+            "group": {
+                "kind":"build",
+                "isDefault": true
+            }
+        }
+    ]
+}
