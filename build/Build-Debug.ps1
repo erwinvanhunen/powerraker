@@ -31,7 +31,7 @@ $cmdletsString = Start-ThreadJob -ScriptBlock $scriptBlock | Receive-Job -Wait
 
 $manifest = "@{
 	NestedModules =  'powerraker.dll'
-	ModuleVersion = '$version'
+	ModuleVersion = '1.0.0'
 	Description = 'Moonraker PowerShell Cmdlets'
 	GUID = '7727435a-7d02-4ef0-ae37-3f69a7de9a2d'
 	Author = 'Erwin van Hunen'
@@ -42,6 +42,7 @@ $manifest = "@{
 	CmdletsToExport = @($cmdletsString)
 	VariablesToExport = '*'
 	AliasesToExport = '*'
+	DefaultCommandPrefix = 'Raker'
 	PrivateData = @{
 		PSData = @{
 			Prerelease = 'debug'
