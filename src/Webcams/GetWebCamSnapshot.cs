@@ -37,9 +37,8 @@ namespace PowerRaker.Webcams
                     {
                         Filename = System.IO.Path.Combine(SessionState.Path.CurrentFileSystemLocation.Path, Filename);
                     }
-#pragma warning disable CS8604 // Possible null reference argument.
-                    var snapshotData = RestHelper.ExecuteGetRequestBinary(this.Connection, selectedWebcam.SnapshotUrl);
-#pragma warning restore CS8604 // Possible null reference argument.
+                    var snapshotData = GetBinaryResult(selectedWebcam.SnapshotUrl);
+
                     File.WriteAllBytes(Filename, snapshotData);
                     WriteObject(new { Filename = Filename, Size = snapshotData.Length });
                 }

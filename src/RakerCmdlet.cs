@@ -1,3 +1,4 @@
+using System.Data.SqlTypes;
 using System.Management.Automation;
 using System.Security.Policy;
 using System.Text.Json;
@@ -51,6 +52,12 @@ namespace PowerRaker
             }
         }
 
+        internal byte[] GetBinaryResult(string url)
+        {
+            var bytes = RestHelper.ExecuteGetRequestBinary(Connection, url);
+            return bytes;
+        }
+        
         internal T? PostResult<T>(string url, object? payload = null)
         {
             var output = RestHelper.ExecutePostRequest(Connection, url);

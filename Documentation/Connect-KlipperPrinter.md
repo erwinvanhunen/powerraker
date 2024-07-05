@@ -1,12 +1,11 @@
 ---
 Module Name: PowerRaker
 schema: 2.0.0
-online version: https://pnp.github.io/powershell/cmdlets/Add-PnPAlert.html
 external help file: powerraker-help.xml
-title: Connect-RakerPrinter
+title: Connect-KlipperPrinter
 ---
   
-# Connect-RakerPrinter
+# Connect-KlipperPrinter
 
 ## SYNOPSIS
 Connects the current PowerShell session to a printer running Klipper with the Moonraker API installed
@@ -14,7 +13,7 @@ Connects the current PowerShell session to a printer running Klipper with the Mo
 ## SYNTAX
 
 ```powershell
-Connect-RakerPrinter [-Printer] <ListPipeBind> [-APIKey <String>] 
+Connect-KlipperPrinter [-Printer] <ListPipeBind> [-APIKey <String>] 
 ```
 
 ## DESCRIPTION
@@ -24,7 +23,7 @@ This cmdlet connects the current PowerShell session to a Klipper printer using t
 
 ### EXAMPLE 1
 ```powershell
-Connect-RakerPrinter http://myprinter
+Connect-KlipperPrinter http://myprinter
 ```
 
 Sets up the environment use the other PowerRaker cmdlets with the specified printer.

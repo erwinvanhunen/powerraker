@@ -2,7 +2,7 @@ using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.Text.Json;
 
-namespace PowerRaker
+namespace PowerRaker.Utils
 {
     internal static class RestHelper
     {

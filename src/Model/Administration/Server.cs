@@ -41,7 +41,7 @@ namespace PowerRaker.Model.Administration
 
     public class ServerConfigDatabase
     {
-        public string? DataBasePath { get; set; }
+        public string? DatabasePath { get; set; }
         public bool EnableDatabaseDebug { get; set; }
     }
     public class ServerConfigFileManager

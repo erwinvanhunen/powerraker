@@ -1,6 +1,6 @@
 Write-Host "Building PowerRaker"
 
-$buildCmd = "dotnet build `"$PSScriptRoot/../powerraker.csproj`"" + "--nologo --configuration Debug"
+$buildCmd = "dotnet build `"$PSScriptRoot/../src/powerraker.csproj`"" + "--nologo --configuration Debug"
 Invoke-Expression $buildCmd
 
 $destinationFolder = "$HOME/.local/share/powershell/Modules/PowerRaker"
@@ -15,14 +15,13 @@ New-Item -Path $destinationFolder -ItemType Directory -Force | Out-Null
 
 Write-Host "Copying files to $destinationFolder" -ForegroundColor Yellow
 
-Get-ChildItem -Path "$PSScriptRoot/../bin/Debug/net8.0" | Where-Object { $_.Extension -in ".dll", ".pdb" } | Foreach-Object { Copy-Item -LiteralPath $_.FullName -Destination $destinationFolder }
-
+Get-ChildItem -Path "$PSScriptRoot/../src/bin/Debug/net8.0" | Where-Object { $_.Extension -in ".dll", ".pdb" } | Foreach-Object { Copy-Item -LiteralPath $_.FullName -Destination $destinationFolder }
 
 $scriptBlock = {
    
    $destinationFolder = "~/.local/share/powershell/Modules/PowerRaker"
    
-    Write-Host "Importing assembly"
+    Write-Host "Importing assembly" -ForegroundColor Yellow
     Import-Module -Name "$destinationFolder/powerraker.dll" -DisableNameChecking
     $cmdlets = get-command -Module powerraker | ForEach-Object { "`"$_`"" }
     $cmdlets -Join ","
@@ -42,7 +41,7 @@ $manifest = "@{
 	CmdletsToExport = @($cmdletsString)
 	VariablesToExport = '*'
 	AliasesToExport = '*'
-	DefaultCommandPrefix = 'Raker'
+	DefaultCommandPrefix = 'Klipper'
 	PrivateData = @{
 		PSData = @{
 			Prerelease = 'debug'
@@ -54,5 +53,5 @@ $manifest = "@{
 
 $manifest | Out-File "$destinationFolder/powerraker.psd1"
 
-
+Write-Host "Generating help file" -ForegroundColor Yellow
 New-ExternalHelp -Path "$PSScriptRoot/../Documentation" -OutputPath $destinationFolder

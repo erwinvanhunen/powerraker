@@ -30,7 +30,7 @@ namespace PowerRaker.Files
 
                 case Param_FILE:
                     {
-                        var bytes = RestHelper.ExecuteGetRequestBinary(Connection, $"/server/files/{Filename}");
+                        var bytes = GetBinaryResult($"/server/files/{Filename}");
                         var fileInfo = new FileInfo(Filename);
                         var outName = fileInfo.Name;
                         if (!System.IO.Path.IsPathRooted(outName))
