@@ -1,19 +1,19 @@
 ﻿using System.Management.Automation;
 
-namespace powerraker;
+namespace PowerRaker;
 
 [Cmdlet(VerbsCommunications.Connect, "Printer")]
 public class ConnectPrinter : Cmdlet
 {
-    [Parameter(Mandatory = true)]
+    [Parameter(Mandatory = true, Position = 0)]
     public required string Printer { get; set; }
 
-    [Parameter(Mandatory = false)
-    public string? APIKey {get;set;}]
+    [Parameter(Mandatory = false)]
+    public string? APIKey {get;set;} = null;
 
     protected override void ProcessRecord()
     {
-        var connection = new RakerConnection(Printer, APIKey);
+        var connection = new RakerConnection(Printer, APIKey ?? null);
         RakerConnection.Current = connection;
     }
 }

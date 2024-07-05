@@ -1,9 +1,9 @@
 using System.Management.Automation;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
-using powerraker.model.printerstatus;
+using PowerRaker.Model.PrinterStatus;
 
-namespace powerraker.printerstatus
+namespace PowerRaker.PrinterStatus
 {
 
     [Cmdlet(VerbsCommon.Get, "EndStopStatus")]

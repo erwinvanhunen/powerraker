@@ -1,9 +1,7 @@
-using System.Diagnostics;
 using System.Management.Automation;
-using System.Security.Cryptography.X509Certificates;
-using System.Text.Json;
+using PowerRaker.Model.Webcams;
 
-namespace powerraker.webcams
+namespace PowerRaker.Webcams
 {
 
     [Cmdlet(VerbsCommon.Get, "WebCamShapshot")]

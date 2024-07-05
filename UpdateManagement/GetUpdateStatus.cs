@@ -1,8 +1,7 @@
 using System.Management.Automation;
-using powerraker.announcements;
+using PowerRaker.Model.UpdateManagement;
 
-
-namespace powerraker.updatemanagement
+namespace PowerRaker.UpdateManagement
 {
 
     [Cmdlet(VerbsCommon.Get, "UpdateStatus")]
@@ -22,8 +21,11 @@ namespace powerraker.updatemanagement
             }
             else
             {
-                var updates = result.VersionInfo.Where(u => u.Value.Version != u.Value.RemoteVersion);
-                WriteObject(updates, true);
+                if (result != null)
+                {
+                    var updates = result.VersionInfo?.Where(u => u.Value.Version != u.Value.RemoteVersion);
+                    WriteObject(updates, true);
+                }
             }
         }
     }

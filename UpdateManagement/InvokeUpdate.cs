@@ -1,8 +1,6 @@
 using System.Management.Automation;
-using powerraker.announcements;
 
-
-namespace powerraker.updatemanagement
+namespace PowerRaker.UpdateManagement
 {
 
     [Cmdlet(VerbsLifecycle.Invoke, "Update")]

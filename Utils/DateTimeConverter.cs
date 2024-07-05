@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace powerraker
+namespace PowerRaker.Utils
 {
     public class UnixToNullableDateTimeConverter : JsonConverter<DateTime?>
     {

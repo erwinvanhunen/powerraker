@@ -1,4 +1,4 @@
-namespace powerraker.model.printerstatus
+namespace PowerRaker.Model.PrinterStatus
 {
     public class EndStopStatus{
         public string? X {get;set;}

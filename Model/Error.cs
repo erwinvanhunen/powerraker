@@ -1,4 +1,4 @@
-namespace powerraker
+namespace PowerRaker
 {
     public class Error
     {

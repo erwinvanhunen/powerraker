@@ -1,4 +1,4 @@
-namespace powerraker.model.files
+namespace PowerRaker.Model.Files
 {
     public class Thumbnail
     {

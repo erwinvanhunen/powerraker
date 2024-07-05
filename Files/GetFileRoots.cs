@@ -1,8 +1,8 @@
 using System.Management.Automation;
 using System.Text.Json;
-using powerraker.model.files;
+using PowerRaker.Model.Files;
 
-namespace powerraker
+namespace PowerRaker.Files
 {
 
     [Cmdlet(VerbsCommon.Get, "FileRoots")]
@@ -10,8 +10,8 @@ namespace powerraker
     {
         protected override void ExecuteCmdlet()
         {
-            var roots = FileRoot.GetRoots(this.Connection);
-            if(roots != null)
+            var roots = GetResult<List<FileRoot>>("/server/files/roots");
+            if (roots != null)
             {
                 WriteObject(roots, true);
             }

@@ -1,4 +1,4 @@
-namespace powerraker.announcements
+namespace PowerRaker.Model.Announcements
 {
     public class Announcement
     {

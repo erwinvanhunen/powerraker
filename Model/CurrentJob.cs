@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace powerraker
+namespace PowerRaker
 {
     public class CurrentJob
     {

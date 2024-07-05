@@ -1,5 +1,13 @@
-namespace powerraker.administration
+namespace PowerRaker.Model.Administration
 {
+    public class CachedGCodeResponses
+    {
+        public List<GcodeReponseCommand>? GcodeStore
+        {
+            get; set;
+        }
+    }
+
     public class GcodeReponseCommand
     {
         public DateTime? Time { get; set; }

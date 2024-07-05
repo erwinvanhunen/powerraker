@@ -1,7 +1,9 @@
 using System.Management.Automation;
+using System.Security.Policy;
 using System.Text.Json;
+using PowerRaker.Utils;
 
-namespace powerraker
+namespace PowerRaker
 {
     public abstract class RakerCmdlet : PSCmdlet
     {
@@ -35,56 +37,64 @@ namespace powerraker
         protected virtual void ExecuteCmdlet()
         { }
 
-        internal JsonElement GetResult(string url, string? collectionName = null)
+        internal T? GetResult<T>(string url)
         {
             var output = RestHelper.ExecuteGetRequest(Connection, url);
-
-            var jsonDocument = JsonSerializer.Deserialize<JsonDocument>(output);
-            if (jsonDocument != null)
+            var result = JsonSerializer.Deserialize<Model.RequestResult<T>>(output, JsonSerializerOptions);
+            if (result != null)
             {
-                if (collectionName != null)
-                {
-                    return jsonDocument.RootElement.GetProperty("result").GetProperty(collectionName);
-                }
-                else
-                {
-                    return jsonDocument.RootElement.GetProperty("result");
-                }
+                return result.Result;
             }
             else
             {
-                return new JsonElement();
+                return default;
             }
-        }
-
-        internal JsonElement PostResult(string url, object? payload = null)
-        {
-         
-            var output = RestHelper.ExecutePostRequest(Connection, url);
-         
-            var jsonDocument = JsonSerializer.Deserialize<JsonDocument>(output);
-            if (jsonDocument != null)
-            {
-
-                return jsonDocument.RootElement.GetProperty("result");
-
-            }
-            else
-            {
-                return new JsonElement();
-            }
-        }
-
-        internal T? GetResult<T>(string url, string? collectionName = null)
-        {
-            var result = GetResult(url, collectionName);
-            return JsonSerializer.Deserialize<T>(result, JsonSerializerOptions);
         }
 
         internal T? PostResult<T>(string url, object? payload = null)
         {
-            var result = PostResult(url, payload);
-            return JsonSerializer.Deserialize<T>(result, JsonSerializerOptions);
+            var output = RestHelper.ExecutePostRequest(Connection, url);
+            var result = JsonSerializer.Deserialize<Model.RequestResult<T>>(output, JsonSerializerOptions);
+            if (result != null)
+            {
+                return result.Result;
+            }
+            else
+            {
+                return default;
+            }
+        }
+
+
+        internal T? PostMultiformData<T>(string Url, string fileName, byte[] data)
+        {
+            var output = RestHelper.ExecutePostMultiformData(Connection, Url, fileName, data);
+            var result = JsonSerializer.Deserialize<Model.RequestResult<T>>(output, JsonSerializerOptions);
+
+            if (result != null)
+            {
+                return result.Result;
+            }
+            else
+            {
+                return default;
+            }
+
+        }
+
+        internal T? DeleteResult<T>(string url, string? collectionName = null)
+        {
+            var output = RestHelper.ExecuteDeleteRequest(Connection, url);
+            var result = JsonSerializer.Deserialize<Model.RequestResult<T>>(output, JsonSerializerOptions);
+
+            if (result != null)
+            {
+                return result.Result;
+            }
+            else
+            {
+                return default;
+            }
         }
 
         protected override void ProcessRecord()

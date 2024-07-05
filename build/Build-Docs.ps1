@@ -1,0 +1,1 @@
+New-ExternalHelp -Path $args[1] -OutputPath $args[0] -Force

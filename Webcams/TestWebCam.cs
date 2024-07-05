@@ -1,8 +1,7 @@
 using System.Management.Automation;
-using System.Security.Cryptography.X509Certificates;
-using System.Text.Json;
+using PowerRaker.Model.Webcams;
 
-namespace powerraker.webcams
+namespace PowerRaker.Webcams
 {
 
     [Cmdlet(VerbsDiagnostic.Test, "WebCam")]
@@ -13,10 +12,10 @@ namespace powerraker.webcams
 
         protected override void ExecuteCmdlet()
         {
-            var webcams = GetResult<List<Webcam>>("/server/webcams/list", "webcams");
-            if (webcams != null)
+            var webcams = GetResult<WebcamList>("/server/webcams/list");
+            if (webcams != null && webcams.Webcams != null)
             {
-                var webcam = webcams.FirstOrDefault(w => w.Name == Name);
+                var webcam = webcams.Webcams.FirstOrDefault(w => w.Name == Name);
                 if (webcam != null)
                 {
                     var testResult = PostResult<WebcamTest>($"/server/webcams/test?uid={webcam.Uid}", null);

@@ -1,4 +1,4 @@
-namespace powerraker
+namespace PowerRaker
 {
 
     public class RakerConnection
@@ -6,8 +6,8 @@ namespace powerraker
         private HttpClient? httpClient;
 
         public string Printer { get; internal set; }
-        public string APIKey {get; internal set; }
-        public RakerConnection(string printer, string APIKey)
+        public string? APIKey { get; internal set; }
+        public RakerConnection(string printer, string? APIKey)
         {
             this.Printer = printer;
             this.APIKey = APIKey;
@@ -25,7 +25,10 @@ namespace powerraker
                 if (httpClient == null)
                 {
                     httpClient = new HttpClient();
-                    httpClient.DefaultRequestHeaders.Add("X-Api-Key", APIKey);
+                    if (APIKey != null)
+                    {
+                        httpClient.DefaultRequestHeaders.Add("X-Api-Key", APIKey);
+                    }
                     httpClient.DefaultRequestHeaders.Accept.Clear();
                     httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                 }

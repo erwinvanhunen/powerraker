@@ -1,7 +1,7 @@
 using System.Management.Automation;
 using System.Text.Json.Serialization;
 
-namespace powerraker.model.files
+namespace PowerRaker.Model.Files
 {
     public class Metadata
     {

@@ -1,6 +1,6 @@
 using System.Management.Automation;
 
-namespace powerraker.administration
+namespace PowerRaker.Administration
 {
     [Cmdlet(VerbsLifecycle.Stop, "Printer")]
 

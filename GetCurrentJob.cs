@@ -1,7 +1,11 @@
+using System.CodeDom;
+using System.Globalization;
 using System.Management.Automation;
 using System.Text.Json;
+using PowerRaker.Model.Files;
+using PowerRaker.Model.Job;
 
-namespace powerraker
+namespace PowerRaker
 {
 
     [Cmdlet(VerbsCommon.Get, "CurrentJob")]
@@ -17,9 +21,10 @@ namespace powerraker
         CancellationTokenSource tokenSource = new CancellationTokenSource();
         protected override void ExecuteCmdlet()
         {
+            TextInfo txtInfo = new CultureInfo("en-us", false).TextInfo;
             if (!Poll)
             {
-                var job = Getjob(this.Connection);
+                var job = Getjob(this);
                 if (job != null && job.Filename != null)
                 {
                     WriteObject(job);
@@ -27,28 +32,26 @@ namespace powerraker
             }
             else
             {
-                var job = Getjob(this.Connection);
-                if (job != null)
+                var job = Getjob(this);
+
+                var exitLoop = false;
+                var progressRecord = new ProgressRecord(0, job.Filename, $"{job.State}. ETA: {job.ETA}");
+                while (!exitLoop)
                 {
-                    var exitLoop = false;
-                    var progressRecord = new ProgressRecord(0, job.Filename, $"{job.State}. ETA: {job.ETA}");
-                    while (!exitLoop)
+                    progressRecord.PercentComplete = job.Progress;
+
+                    progressRecord.StatusDescription = $"{txtInfo.ToTitleCase(job.State)} ({job.Progress}%) ETA: {job.ETA:HH:mm:ss}";
+#pragma warning restore CS8604 // Possible null reference argument.
+                    WriteProgress(progressRecord);
+
+                    Task.Delay(PollSeconds * 1000, tokenSource.Token).GetAwaiter().GetResult();
+
+                    job = Getjob(this);
+                    if (job != null)
                     {
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-                        progressRecord.PercentComplete = job.Progress;
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-                        progressRecord.StatusDescription = $"{job.State}. ETA: {job.ETA}";
-                        WriteProgress(progressRecord);
-
-                        Task.Delay(PollSeconds * 1000, tokenSource.Token).GetAwaiter().GetResult();
-
-                        job = Getjob(this.Connection);
-                        if (job != null)
+                        if (job.Progress == 100 || job.State == "complete")
                         {
-                            if (job.Progress == 100 || job.State == "complete")
-                            {
-                                exitLoop = true;
-                            }
+                            exitLoop = true;
                         }
                     }
                 }
@@ -61,43 +64,33 @@ namespace powerraker
             base.StopProcessing();
         }
 
-        private static CurrentJob? Getjob(RakerConnection connection)
+        private static int EstimatedTime = 0;
+        private static CurrentJob Getjob(RakerCmdlet cmdlet)
         {
+            CurrentJob currentJob = new();
 
-            CurrentJob? currentJob = null;
-
-            var output = RestHelper.ExecuteGetRequest(connection, "/printer/objects/query?webhooks&virtual_sdcard&print_stats");
-            var jsonDocument = JsonSerializer.Deserialize<JsonDocument>(output);
-            if (jsonDocument != null)
+            var objectQuery = cmdlet.GetResult<PrinterObjectsQuery>("/printer/objects/query?print_stats&virtual_sdcard");
+            if (objectQuery != null)
             {
-                var webHooks = jsonDocument.RootElement.GetProperty("result").GetProperty("status").GetProperty("webhooks");
-                var webHookStatus = webHooks.GetProperty("state").GetString();
-                if (webHookStatus == "ready")
+                if (objectQuery.Status != null && objectQuery.Status.PrintStats != null && objectQuery.Status.VirtualSdcard != null)
                 {
-                    currentJob = new CurrentJob();
-
-                    var printStats = jsonDocument.RootElement.GetProperty("result").GetProperty("status").GetProperty("print_stats");
-                    var state = printStats.GetProperty("state").GetString();
-                    currentJob.State = state;
-                    if (state == "printing")
+                    currentJob.State = objectQuery.Status.PrintStats.State;
+                    if (currentJob.State == "printing")
                     {
-                        currentJob.Filename = printStats.GetProperty("filename").GetString();
-                        var sdcardInfo = jsonDocument.RootElement.GetProperty("result").GetProperty("status").GetProperty("virtual_sdcard");
-                        currentJob.Layer = sdcardInfo.GetProperty("layer").GetInt32();
-                        currentJob.Layers = sdcardInfo.GetProperty("layer_count").GetInt32();
-                        var progress = sdcardInfo.GetProperty("progress").GetDouble();
+                        currentJob.Filename = objectQuery.Status.PrintStats.Filename;
+                        var progress = objectQuery.Status.VirtualSdcard.Progress;
                         currentJob.Progress = (int)(progress * 100);
-                        var fileMetadataJson = RestHelper.ExecuteGetRequest(connection, $"/server/files/metadata?filename={currentJob.Filename}");
-                        var fileMetadataDocument = JsonSerializer.Deserialize<JsonDocument>(fileMetadataJson);
-                        if (fileMetadataDocument != null)
+                        if (EstimatedTime == 0)
                         {
-                            var fileMetadataElement = fileMetadataDocument.RootElement.GetProperty("result");
-
-                            var estimatedTime = fileMetadataElement.GetProperty("estimated_time").GetInt32();
-                            var progTime = progress * estimatedTime;
-                            var eta = estimatedTime - progTime;
-                            currentJob.ETA = DateTime.Now.AddSeconds(eta);
+                            var metadata = cmdlet.GetResult<Metadata>($"/server/files/metadata?filename={currentJob.Filename}");
+                            if (metadata != null)
+                            {
+                                EstimatedTime = metadata.EstimatedTime;
+                            }
                         }
+                        var progTime = progress * EstimatedTime;
+                        var eta = EstimatedTime - progTime;
+                        currentJob.ETA = DateTime.Now.AddSeconds(eta);
                     }
                 }
             }

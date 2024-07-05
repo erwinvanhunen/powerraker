@@ -1,4 +1,4 @@
-namespace powerraker.webcams
+namespace PowerRaker.Model.Webcams
 {
     public class WebcamTest
     {

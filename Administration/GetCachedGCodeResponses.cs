@@ -1,10 +1,8 @@
 using System.Management.Automation;
-using System.Security.Cryptography.X509Certificates;
-using System.Text.Json;
+using PowerRaker.Model.Administration;
 
-namespace powerraker.administration
+namespace PowerRaker.Administration
 {
-
     [Cmdlet(VerbsCommon.Get, "CachedGCodeResponses")]
     public class GetCachedGCodeResponses : RakerCmdlet
     {
@@ -12,8 +10,11 @@ namespace powerraker.administration
         public int Count = 100;
         protected override void ExecuteCmdlet()
         {
-            var result = GetResult<List<GcodeReponseCommand>>($"/server/gcode_store?count={Count}", "gcode_store");
-            WriteObject(result);
+            var result = GetResult<CachedGCodeResponses>($"/server/gcode_store?count={Count}");
+            if (result != null)
+            {
+                WriteObject(result.GcodeStore);
+            }
         }
     }
 }

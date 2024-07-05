@@ -1,8 +1,9 @@
 using System.Management.Automation;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
+using PowerRaker.Model.Administration;
 
-namespace powerraker.administration
+namespace PowerRaker.Administration
 {
 
     [Cmdlet(VerbsCommon.Get, "ServerInfo")]

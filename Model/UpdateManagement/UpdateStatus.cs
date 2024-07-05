@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace powerraker.updatemanagement
+namespace PowerRaker.Model.UpdateManagement
 {
     public class UpdateStatus
     {
@@ -49,6 +49,6 @@ namespace powerraker.updatemanagement
         public DateTime? Date {get;set;}
         public string? Subject {get;set;}
         public string? Message {get;set;}
-        public object Tag {get;set;}
+        public object? Tag {get;set;}
     }
 }

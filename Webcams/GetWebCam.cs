@@ -1,8 +1,7 @@
 using System.Management.Automation;
-using System.Security.Cryptography.X509Certificates;
-using System.Text.Json;
+using PowerRaker.Model.Webcams;
 
-namespace powerraker.webcams
+namespace PowerRaker.Webcams
 {
 
     [Cmdlet(VerbsCommon.Get, "WebCam")]
@@ -10,9 +9,11 @@ namespace powerraker.webcams
     {
         protected override void ExecuteCmdlet()
         {
-            var webcams = GetResult<List<Webcam>>("/server/webcams/list","webcams");
-            WriteObject(webcams,true);
-           
+            var webcams = GetResult<WebcamList>("/server/webcams/list");
+            if (webcams != null)
+            {
+                WriteObject(webcams.Webcams, true);
+            }
         }
     }
 

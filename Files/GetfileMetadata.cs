@@ -1,0 +1,21 @@
+using System.Management.Automation;
+using PowerRaker.Model.Files;
+
+namespace PowerRaker.Files
+{
+
+    [Cmdlet(VerbsCommon.Get, "FileMetadata")]
+    public class GetFileMetadata : RakerCmdlet
+    {
+        [Parameter(Mandatory = true)]
+        public required string Name { get; set; }
+
+        protected override void ExecuteCmdlet()
+        {
+            var metadata = GetResult<Metadata>($"/server/files/metadata?filename={Name}");
+            WriteObject(metadata);
+
+        }
+    }
+
+}

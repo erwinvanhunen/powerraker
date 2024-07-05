@@ -53,3 +53,6 @@ $manifest = "@{
 }"
 
 $manifest | Out-File "$destinationFolder/powerraker.psd1"
+
+
+New-ExternalHelp -Path "$PSScriptRoot/../Documentation" -OutputPath $destinationFolder

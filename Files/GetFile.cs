@@ -1,7 +1,7 @@
 using System.Management.Automation;
 using System.Text.Json;
 
-namespace powerraker
+namespace PowerRaker.Files
 {
 
     [Cmdlet(VerbsCommon.Get, "File")]
@@ -22,18 +22,9 @@ namespace powerraker
             {
                 case Param_FOLDER:
                     {
-                        var output = RestHelper.ExecuteGetRequest(this.Connection, $"/server/files/list?root={Folder}");
 
-                        JsonSerializerOptions options = new JsonSerializerOptions();
-                        options.Converters.Add(new UnixToNullableDateTimeConverter());
-                        options.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower;
-
-                        var jsonDocument = JsonSerializer.Deserialize<JsonDocument>(output, options);
-                        if (jsonDocument != null)
-                        {
-                            var files = JsonSerializer.Deserialize<List<model.files.File>>(jsonDocument.RootElement.GetProperty("result"), options);
-                            WriteObject(files, true);
-                        }
+                        var files = GetResult<List<Model.Files.File>>($"/server/files/list?root={Folder}");
+                        WriteObject(files, true);
                         break;
                     }
 
@@ -44,7 +35,7 @@ namespace powerraker
                         var outName = fileInfo.Name;
                         if (!System.IO.Path.IsPathRooted(outName))
                         {
-                            Filename = System.IO.Path.Combine(SessionState.Path.CurrentFileSystemLocation.Path, outName);
+                            outName = System.IO.Path.Combine(SessionState.Path.CurrentFileSystemLocation.Path, outName);
                         }
                         System.IO.File.WriteAllBytes(outName, bytes);
                         break;

@@ -1,4 +1,4 @@
-namespace powerraker.administration
+namespace PowerRaker.Model.Administration
 {
     public class Server
     {

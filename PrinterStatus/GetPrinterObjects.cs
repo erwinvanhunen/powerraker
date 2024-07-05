@@ -1,8 +1,7 @@
 using System.Management.Automation;
-using System.Security.Cryptography.X509Certificates;
-using System.Text.Json;
+using PowerRaker.Model.PrinterStatus;
 
-namespace powerraker.printerstatus
+namespace PowerRaker.PrinterStatus
 {
 
     [Cmdlet(VerbsCommon.Get, "PrinterObjects")]
@@ -10,9 +9,12 @@ namespace powerraker.printerstatus
     {
         protected override void ExecuteCmdlet()
         {
-            var objects = GetResult<List<string>>("/printer/objects/list","objects");
-            WriteObject(objects,true);
-           
+            var objects = GetResult<ObjectsList>("/printer/objects/list");
+            if (objects != null)
+            {
+                WriteObject(objects.Objects, true);
+            }
+
         }
     }
 
