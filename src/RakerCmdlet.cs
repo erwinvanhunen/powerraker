@@ -57,10 +57,10 @@ namespace PowerRaker
             var bytes = RestHelper.ExecuteGetRequestBinary(Connection, url);
             return bytes;
         }
-        
+
         internal T? PostResult<T>(string url, object? payload = null)
         {
-            var output = RestHelper.ExecutePostRequest(Connection, url);
+            var output = RestHelper.ExecutePostRequest(Connection, url, payload);
             var result = JsonSerializer.Deserialize<Model.RequestResult<T>>(output, JsonSerializerOptions);
             if (result != null)
             {
@@ -89,9 +89,9 @@ namespace PowerRaker
 
         }
 
-        internal T? DeleteResult<T>(string url, string? collectionName = null)
+        internal T? DeleteResult<T>(string url, object? payload = null)
         {
-            var output = RestHelper.ExecuteDeleteRequest(Connection, url);
+            var output = RestHelper.ExecuteDeleteRequest(Connection, url, payload);
             var result = JsonSerializer.Deserialize<Model.RequestResult<T>>(output, JsonSerializerOptions);
 
             if (result != null)
