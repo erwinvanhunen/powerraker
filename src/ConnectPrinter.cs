@@ -34,10 +34,6 @@ public class ConnectPrinter : PSCmdlet
                 }
             case "User":
                 {
-                    // if (!MyInvocation.BoundParameters.ContainsKey(nameof(Password)))
-                    // {
-                        
-                    // }
                     connection = new RakerConnection(Printer, Username, Password, Source);
                     break;
                 }
