@@ -17,6 +17,8 @@ Write-Host "Copying files to $destinationFolder" -ForegroundColor Yellow
 
 Get-ChildItem -Path "$PSScriptRoot/../src/bin/Debug/net8.0" | Where-Object { $_.Extension -in ".dll", ".pdb" } | Foreach-Object { Copy-Item -LiteralPath $_.FullName -Destination $destinationFolder }
 
+Copy-Item -LiteralPath "$PSScriptRoot/../Resources/PowerRaker.Format.ps1xml" -Destination $destinationFolder 
+
 $scriptBlock = {
    
    $destinationFolder = "~/.local/share/powershell/Modules/PowerRaker"
@@ -42,6 +44,7 @@ $manifest = "@{
 	VariablesToExport = '*'
 	AliasesToExport = '*'
 	DefaultCommandPrefix = 'Klipper'
+	FormatsToProcess = 'PowerRaker.Format.ps1xml' 
 	PrivateData = @{
 		PSData = @{
 			Prerelease = 'debug'
