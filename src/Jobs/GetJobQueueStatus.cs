@@ -1,13 +1,11 @@
 using System.Management.Automation;
-using System.Security.Cryptography.X509Certificates;
-using System.Text.Json;
 using PowerRaker.Model.Job;
 
 namespace PowerRaker.Jobs
 {
 
     [Cmdlet(VerbsCommon.Get, "JobQueueStatus")]
-    public class GetJobQueueStatus : RakerCmdlet
+    public class GetJobQueueStatus : KlipperCmdlet
     {
         protected override void ExecuteCmdlet()
         {

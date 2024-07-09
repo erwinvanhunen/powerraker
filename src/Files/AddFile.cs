@@ -1,7 +1,4 @@
-using System.Data.Common;
-using System.IO.Enumeration;
 using System.Management.Automation;
-using System.Text.Json;
 using PowerRaker.Model.Files;
 
 namespace PowerRaker.Files
@@ -14,7 +11,7 @@ namespace PowerRaker.Files
     }
 
     [Cmdlet(VerbsCommon.Add, "File")]
-    public class AddFile : RakerCmdlet
+    public class AddFile : KlipperCmdlet
     {
         [Parameter(Mandatory = true)]
         public required string Filename { get; set; }

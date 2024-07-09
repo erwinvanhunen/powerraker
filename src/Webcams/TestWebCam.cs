@@ -5,7 +5,7 @@ namespace PowerRaker.Webcams
 {
 
     [Cmdlet(VerbsDiagnostic.Test, "WebCam")]
-    public class TestWebCam : RakerCmdlet
+    public class TestWebCam : KlipperCmdlet
     {
         [Parameter(Mandatory = true, ParameterSetName = "ByName")]
         public required string Name { get; set; }

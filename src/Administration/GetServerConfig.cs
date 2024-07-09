@@ -5,7 +5,7 @@ namespace PowerRaker.Administration
 {
 
     [Cmdlet(VerbsCommon.Get, "ServerConfig")]
-    public class GetServerConfig : RakerCmdlet
+    public class GetServerConfig : KlipperCmdlet
     {
         protected override void ExecuteCmdlet()
         {

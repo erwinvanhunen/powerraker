@@ -1,13 +1,14 @@
-using System.Data.SqlTypes;
 using System.Management.Automation;
-using System.Security.Policy;
 using System.Text.Json;
 using PowerRaker.Utils;
 
 namespace PowerRaker
 {
-    public abstract class RakerCmdlet : PSCmdlet
+    public abstract class KlipperCmdlet : PSCmdlet
     {
+        [Parameter(Mandatory = false)]
+        public PrinterContext? Connection { get; set; }
+
         internal JsonSerializerOptions JsonSerializerOptions
         {
             get
@@ -22,15 +23,22 @@ namespace PowerRaker
         }
         internal JsonNamingPolicy JsonNamingPolicy => JsonNamingPolicy.SnakeCaseLower;
 
-        public RakerConnection Connection
+        public PrinterContext Context
         {
             get
             {
-                if (RakerConnection.Current != null)
-                { return RakerConnection.Current; }
+                if (this.Connection != null)
+                {
+                    return this.Connection;
+                }
                 else
                 {
-                    throw new Exception("No connection.");
+                    if (PrinterContext.Current != null)
+                    { return PrinterContext.Current; }
+                    else
+                    {
+                        throw new Exception("No connection.");
+                    }
                 }
             }
         }
@@ -40,7 +48,7 @@ namespace PowerRaker
 
         internal T? GetResult<T>(string url)
         {
-            var output = RestHelper.ExecuteGetRequest(Connection, url);
+            var output = RestHelper.ExecuteGetRequest(Context, url);
             var result = JsonSerializer.Deserialize<Model.RequestResult<T>>(output, JsonSerializerOptions);
             if (result != null)
             {
@@ -54,13 +62,13 @@ namespace PowerRaker
 
         internal byte[] GetBinaryResult(string url)
         {
-            var bytes = RestHelper.ExecuteGetRequestBinary(Connection, url);
+            var bytes = RestHelper.ExecuteGetRequestBinary(Context, url);
             return bytes;
         }
 
         internal T? PostResult<T>(string url, object? payload = null)
         {
-            var output = RestHelper.ExecutePostRequest(Connection, url, payload);
+            var output = RestHelper.ExecutePostRequest(Context, url, payload);
             var result = JsonSerializer.Deserialize<Model.RequestResult<T>>(output, JsonSerializerOptions);
             if (result != null)
             {
@@ -75,7 +83,7 @@ namespace PowerRaker
 
         internal T? PostMultiformData<T>(string Url, string fileName, byte[] data)
         {
-            var output = RestHelper.ExecutePostMultiformData(Connection, Url, fileName, data);
+            var output = RestHelper.ExecutePostMultiformData(Context, Url, fileName, data);
             var result = JsonSerializer.Deserialize<Model.RequestResult<T>>(output, JsonSerializerOptions);
 
             if (result != null)
@@ -91,7 +99,7 @@ namespace PowerRaker
 
         internal T? DeleteResult<T>(string url, object? payload = null)
         {
-            var output = RestHelper.ExecuteDeleteRequest(Connection, url, payload);
+            var output = RestHelper.ExecuteDeleteRequest(Context, url, payload);
             var result = JsonSerializer.Deserialize<Model.RequestResult<T>>(output, JsonSerializerOptions);
 
             if (result != null)
@@ -106,9 +114,10 @@ namespace PowerRaker
 
         protected override void ProcessRecord()
         {
+
             try
             {
-                if (this.Connection != null)
+                if (this.Context != null)
                 {
                     ExecuteCmdlet();
                 }
@@ -121,6 +130,11 @@ namespace PowerRaker
             {
                 throw new PSInvalidOperationException(ex.Message);
             }
+        }
+
+        internal bool ParameterSpecified(string parameterName)
+        {
+            return MyInvocation.BoundParameters.ContainsKey(parameterName);
         }
 
     }

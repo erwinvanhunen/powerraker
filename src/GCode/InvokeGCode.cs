@@ -1,13 +1,10 @@
 using System.Management.Automation;
-using System.Security.Cryptography.X509Certificates;
-using System.Text.Json;
-using PowerRaker.Model.PrinterStatus;
 
 namespace PowerRaker.gcode
 {
 
     [Cmdlet(VerbsLifecycle.Invoke, "GCode")]
-    public class InvokeGCode : RakerCmdlet
+    public class InvokeGCode : KlipperCmdlet
     {
         [Parameter(Mandatory = true)]
         public required string Code { get; set; }

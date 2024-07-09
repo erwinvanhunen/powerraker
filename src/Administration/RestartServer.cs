@@ -4,7 +4,7 @@ namespace PowerRaker.Administration
 {
     [Cmdlet(VerbsLifecycle.Restart, "Server")]
 
-    public class RestartServer : RakerCmdlet
+    public class RestartServer : KlipperCmdlet
     {
         protected override void ExecuteCmdlet()
         {

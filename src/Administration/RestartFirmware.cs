@@ -4,7 +4,7 @@ namespace PowerRaker.Administration
 {
     [Cmdlet(VerbsLifecycle.Restart, "Firmware")]
 
-    public class RestartFirmware: RakerCmdlet
+    public class RestartFirmware: KlipperCmdlet
     {
         protected override void ExecuteCmdlet()
         {

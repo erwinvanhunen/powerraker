@@ -4,7 +4,7 @@ namespace PowerRaker.Administration
 {
     [Cmdlet(VerbsLifecycle.Stop, "Printer")]
 
-    public class StopPrinter : RakerCmdlet
+    public class StopPrinter : KlipperCmdlet
     {
         protected override void ExecuteCmdlet()
         {

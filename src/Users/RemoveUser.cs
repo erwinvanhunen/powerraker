@@ -5,7 +5,7 @@ namespace PowerRaker.Webcams
 {
 
     [Cmdlet(VerbsCommon.Remove, "User")]
-    public class RemoveUser : RakerCmdlet
+    public class RemoveUser : KlipperCmdlet
     {
         [Parameter(Mandatory = true)]
         public required string Username { get; set; }

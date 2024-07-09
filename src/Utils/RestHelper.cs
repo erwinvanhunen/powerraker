@@ -1,7 +1,4 @@
-using System.Data.SqlTypes;
-using System.Diagnostics;
 using System.Net.Http.Headers;
-using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 
@@ -9,12 +6,12 @@ namespace PowerRaker.Utils
 {
     internal static class RestHelper
     {
-        public static string ExecuteGetRequest(RakerConnection connection, string endPoint)
+        public static string ExecuteGetRequest(PrinterContext connection, string endPoint)
         {
             return ExecuteRequest(connection, endPoint, HttpMethod.Get, null);
         }
 
-        public static byte[] ExecuteGetRequestBinary(RakerConnection connection, string endPoint)
+        public static byte[] ExecuteGetRequestBinary(PrinterContext connection, string endPoint)
         {
             var url = connection.Printer + endPoint;
 
@@ -27,17 +24,17 @@ namespace PowerRaker.Utils
             return returnValue;
         }
 
-        public static string ExecutePostRequest(RakerConnection connection, string endPoint, object payload)
+        public static string ExecutePostRequest(PrinterContext connection, string endPoint, object payload)
         {
             return ExecuteRequest(connection, endPoint, HttpMethod.Post, payload);
         }
 
-        public static string ExecuteDeleteRequest(RakerConnection connection, string endPoint, object payload)
+        public static string ExecuteDeleteRequest(PrinterContext connection, string endPoint, object payload)
         {
             return ExecuteRequest(connection, endPoint, HttpMethod.Delete, payload);
         }
 
-        private static string ExecuteRequest(RakerConnection connection, string endPoint, HttpMethod method, object? payload)
+        private static string ExecuteRequest(PrinterContext connection, string endPoint, HttpMethod method, object? payload)
         {
             StringContent? content = null;
             if (payload != null)
@@ -83,7 +80,7 @@ namespace PowerRaker.Utils
             }
         }
 
-        public static string ExecutePostMultiformData(RakerConnection connection, string endPoint, string fileName, byte[] data)
+        public static string ExecutePostMultiformData(PrinterContext connection, string endPoint, string fileName, byte[] data)
         {
             var url = connection.Printer + endPoint;
 

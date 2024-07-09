@@ -1,5 +1,3 @@
-using System.ComponentModel;
-
 namespace PowerRaker.Model.Database
 {
     public class DatabaseInfo

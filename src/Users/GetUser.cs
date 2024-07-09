@@ -5,7 +5,7 @@ namespace PowerRaker.Webcams
 {
 
     [Cmdlet(VerbsCommon.Get, "User")]
-    public class GetUser : RakerCmdlet
+    public class GetUser : KlipperCmdlet
     {
         [Parameter(Mandatory = false)]
         public SwitchParameter Current { get; set; }

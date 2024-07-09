@@ -1,9 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Management.Automation;
 using System.Management.Automation.Host;
-using System.Runtime.Serialization;
-using System.Security.Cryptography.X509Certificates;
-using System.Text.Json;
 using PowerRaker.Model.Files;
 using PowerRaker.Utils;
 
@@ -11,7 +8,7 @@ namespace PowerRaker.Files
 {
 
     [Cmdlet(VerbsCommon.Get, "FileThumbnail")]
-    public class GetFileThumbnail : RakerCmdlet
+    public class GetFileThumbnail : KlipperCmdlet
     {
         [Parameter(Mandatory = true)]
         public required string Filename { get; set; }
@@ -28,7 +25,7 @@ namespace PowerRaker.Files
                 {
                     if (thumbnail.ThumbnailPath != null)
                     {
-                        var bytes = RestHelper.ExecuteGetRequestBinary(this.Connection, "/server/files/gcodes/" + thumbnail.ThumbnailPath);
+                        var bytes = RestHelper.ExecuteGetRequestBinary(this.Context, "/server/files/gcodes/" + thumbnail.ThumbnailPath);
                         var thumbnailFilename = new FileInfo(thumbnail.ThumbnailPath).Name;
                         var filePath = "";
                         if (!Path.IsPathRooted(thumbnailFilename))

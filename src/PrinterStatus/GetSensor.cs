@@ -1,14 +1,11 @@
 using System.Management.Automation;
-using System.Reflection.Metadata.Ecma335;
-using System.Security.Cryptography.X509Certificates;
-using System.Text.Json;
 using PowerRaker.Model.PrinterStatus;
 
 namespace PowerRaker.PrinterStatus
 {
 
     [Cmdlet(VerbsCommon.Get, "Sensor")]
-    public class GetSensor : RakerCmdlet
+    public class GetSensor : KlipperCmdlet
     {
         [Parameter(Mandatory = false)]
         public SwitchParameter Extended {get;set;}

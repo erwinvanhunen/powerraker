@@ -5,7 +5,7 @@ namespace PowerRaker.printmanagement
 {
 
     [Cmdlet(VerbsCommon.Get, "Announcement")]
-    public class GetAnnouncement : RakerCmdlet
+    public class GetAnnouncement : KlipperCmdlet
     {
         [Parameter(Mandatory = false)]
         public SwitchParameter IncludeDismissed { get; set; }

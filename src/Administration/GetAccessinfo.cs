@@ -5,7 +5,7 @@ namespace PowerRaker.Administration
 {
 
     [Cmdlet(VerbsCommon.Get, "Accessinfo")]
-    public class GetAccessInfo : RakerCmdlet
+    public class GetAccessInfo : KlipperCmdlet
     {
         protected override void ExecuteCmdlet()
         {

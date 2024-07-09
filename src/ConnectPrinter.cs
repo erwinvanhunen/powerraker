@@ -22,23 +22,30 @@ public class ConnectPrinter : PSCmdlet
     [Parameter(Mandatory = false, ParameterSetName = "User")]
     public string? Source { get; set; } = "moonraker";
 
+    [Parameter(Mandatory = false, ParameterSetName = ParameterAttribute.AllParameterSets)]
+    public SwitchParameter ReturnConnection { get; set; }
+
     protected override void ProcessRecord()
     {
-        RakerConnection connection = null;
+        PrinterContext? connection = null;
         switch (ParameterSetName)
         {
             case "APIKey":
                 {
-                    connection = new RakerConnection(Printer, APIKey ?? null);
+                    connection = new PrinterContext(Printer, APIKey ?? null);
                     break;
                 }
             case "User":
                 {
-                    connection = new RakerConnection(Printer, Username, Password, Source);
+                    connection = new PrinterContext(Printer, Username, Password, Source);
                     break;
                 }
 
         }
-        RakerConnection.Current = connection;
+        PrinterContext.Current = connection;
+        if (ReturnConnection)
+        {
+            WriteObject(connection);
+        }
     }
 }

@@ -5,7 +5,7 @@ namespace PowerRaker.Webcams
 {
 
     [Cmdlet(VerbsCommon.Set, "UserPassword")]
-    public class UserPassword : RakerCmdlet
+    public class UserPassword : KlipperCmdlet
     {
         [Parameter(Mandatory = true)]
         public required string CurrentPassword { get; set; }

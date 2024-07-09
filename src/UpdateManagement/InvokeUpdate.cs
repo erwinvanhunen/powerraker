@@ -4,7 +4,7 @@ namespace PowerRaker.UpdateManagement
 {
 
     [Cmdlet(VerbsLifecycle.Invoke, "Update")]
-    public class InvokeUpdate : RakerCmdlet
+    public class InvokeUpdate : KlipperCmdlet
     {
         [Parameter(Mandatory = false, ParameterSetName = "System")]
         public SwitchParameter SystemUpdate { get; set; }

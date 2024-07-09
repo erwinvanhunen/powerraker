@@ -4,7 +4,7 @@ namespace PowerRaker.Administration
 {
     [Cmdlet(VerbsLifecycle.Restart, "Printer")]
 
-    public class RestartPrinter : RakerCmdlet
+    public class RestartPrinter : KlipperCmdlet
     {
         protected override void ExecuteCmdlet()
         {

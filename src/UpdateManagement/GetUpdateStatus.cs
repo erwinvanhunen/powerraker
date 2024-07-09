@@ -5,7 +5,7 @@ namespace PowerRaker.UpdateManagement
 {
 
     [Cmdlet(VerbsCommon.Get, "UpdateStatus")]
-    public class GetUpdateStatus : RakerCmdlet
+    public class GetUpdateStatus : KlipperCmdlet
     {
         [Parameter(Mandatory = false)]
         public SwitchParameter Refresh { get; set; }

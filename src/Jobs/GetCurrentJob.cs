@@ -1,7 +1,5 @@
-using System.CodeDom;
 using System.Globalization;
 using System.Management.Automation;
-using System.Text.Json;
 using PowerRaker.Model.Files;
 using PowerRaker.Model.Job;
 
@@ -9,7 +7,7 @@ namespace PowerRaker
 {
 
     [Cmdlet(VerbsCommon.Get, "CurrentJob")]
-    public class GetCurrentJob : RakerCmdlet
+    public class GetCurrentJob : KlipperCmdlet
     {
         [Parameter(Mandatory = false)]
         public SwitchParameter Poll;
@@ -65,7 +63,7 @@ namespace PowerRaker
         }
 
         private static int EstimatedTime = 0;
-        private static CurrentJob Getjob(RakerCmdlet cmdlet)
+        private static CurrentJob Getjob(KlipperCmdlet cmdlet)
         {
             CurrentJob currentJob = new();
 

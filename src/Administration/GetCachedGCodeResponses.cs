@@ -4,7 +4,7 @@ using PowerRaker.Model.Administration;
 namespace PowerRaker.Administration
 {
     [Cmdlet(VerbsCommon.Get, "CachedGCodeResponses")]
-    public class GetCachedGCodeResponses : RakerCmdlet
+    public class GetCachedGCodeResponses : KlipperCmdlet
     {
         [Parameter(Mandatory = false)]
         public int Count = 100;

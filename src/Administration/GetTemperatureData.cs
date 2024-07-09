@@ -1,12 +1,10 @@
 using System.Management.Automation;
-using System.Security.Cryptography.X509Certificates;
-using System.Text.Json;
 
 namespace PowerRaker.Administration
 {
 
     [Cmdlet(VerbsCommon.Get, "TemperatureData")]
-    public class GetTemperatureData : RakerCmdlet
+    public class GetTemperatureData : KlipperCmdlet
     {
         [Parameter(Mandatory = false)]
         public SwitchParameter IncludeMonitors;

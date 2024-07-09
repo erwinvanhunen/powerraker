@@ -1,11 +1,10 @@
 using System.Management.Automation;
-using System.Text.Json;
 
 namespace PowerRaker.Files
 {
 
     [Cmdlet(VerbsCommon.Get, "File")]
-    public class GetFile : RakerCmdlet
+    public class GetFile : KlipperCmdlet
     {
         const string Param_FOLDER = "Folder";
         const string Param_FILE = "File";

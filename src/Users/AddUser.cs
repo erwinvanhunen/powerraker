@@ -5,7 +5,7 @@ namespace PowerRaker.Webcams
 {
 
     [Cmdlet(VerbsCommon.Add, "User")]
-    public class AddUser : RakerCmdlet
+    public class AddUser : KlipperCmdlet
     {
         [Parameter(Mandatory = true)]
         public required string Username { get; set; }

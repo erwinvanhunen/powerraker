@@ -5,7 +5,7 @@ namespace PowerRaker.Webcams
 {
 
     [Cmdlet(VerbsCommon.Get, "WebCamShapshot")]
-    public class GetWebCamSnapshot : RakerCmdlet
+    public class GetWebCamSnapshot : KlipperCmdlet
     {
         [Parameter(Mandatory = false)]
         public string? Webcam = null;

@@ -5,7 +5,7 @@ namespace PowerRaker.Webcams
 {
 
     [Cmdlet(VerbsCommon.Get, "DatabaseItem")]
-    public class GetDatabaseItem : RakerCmdlet
+    public class GetDatabaseItem : KlipperCmdlet
     {
         [Parameter(Mandatory = true)]
         public required string Namespace {get;set;}

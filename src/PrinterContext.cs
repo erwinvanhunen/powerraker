@@ -1,29 +1,27 @@
 using System.Security;
-using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using PowerRaker.Model.Users;
 using PowerRaker.Utils;
 
 namespace PowerRaker
 {
 
-    public class RakerConnection
+    public class PrinterContext
     {
         private HttpClient? httpClient;
 
         public string Printer { get; internal set; }
         public string? APIKey { get; internal set; }
 
-        private string? Username;
+        public string? Username { get; set; }
         private SecureString? Password;
         private string? Token;
         private string? RefreshToken;
-        private DateTime TokenExpires;
+        public DateTime TokenExpires {get; internal set;}
 
 
-        public RakerConnection(string printer, string? APIKey)
+        public PrinterContext(string printer, string? APIKey)
         {
             this.Printer = printer;
             this.APIKey = APIKey;
@@ -31,7 +29,7 @@ namespace PowerRaker
             Current = this;
         }
 
-        public RakerConnection(string printer, string? username, SecureString? password, string? source)
+        public PrinterContext(string printer, string? username, SecureString? password, string? source)
         {
 
             this.Printer = printer;
@@ -58,7 +56,7 @@ namespace PowerRaker
             return this.Token != null;
         }
 
-        public string GetAuthToken()
+        public string? GetAuthToken()
         {
             if (this.Token == null || DateTime.Now > TokenExpires)
             {
@@ -77,12 +75,12 @@ namespace PowerRaker
             this.TokenExpires = DateTime.Now.AddHours(1);
         }
 
-        public static RakerConnection? Current
+        public static PrinterContext? Current
         {
             get; internal set;
         }
 
-        public HttpClient HttpClient
+        internal HttpClient HttpClient
         {
             get
             {
@@ -100,7 +98,7 @@ namespace PowerRaker
             }
         }
 
-        private static string ExecuteRequest(RakerConnection connection, string endPoint, HttpMethod method, object? payload)
+        private static string ExecuteRequest(PrinterContext connection, string endPoint, HttpMethod method, object? payload)
         {
             StringContent? content = null;
             if (payload != null)

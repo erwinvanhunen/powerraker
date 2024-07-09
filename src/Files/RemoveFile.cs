@@ -1,6 +1,4 @@
-using System.IO.Enumeration;
 using System.Management.Automation;
-using System.Text.Json;
 using PowerRaker.Model.Files;
 
 namespace PowerRaker
@@ -13,7 +11,7 @@ namespace PowerRaker
     }
 
     [Cmdlet(VerbsCommon.Remove, "File")]
-    public class RemoveFile : RakerCmdlet
+    public class RemoveFile : KlipperCmdlet
     {
         [Parameter(Mandatory = true)]
         public required string Filename { get; set; }

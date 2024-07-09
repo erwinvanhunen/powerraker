@@ -1,5 +1,3 @@
-using System.Text.Json.Serialization;
-
 namespace PowerRaker.Model.Job
 {
     public class Job

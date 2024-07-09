@@ -54,4 +54,4 @@ $manifest = "@{
 $manifest | Out-File "$destinationFolder/powerraker.psd1"
 
 Write-Host "Generating help file" -ForegroundColor Yellow
-New-ExternalHelp -Path "$PSScriptRoot/../Documentation" -OutputPath $destinationFolder
+New-ExternalHelp -Path "$PSScriptRoot/../documentation" -OutputPath $destinationFolder

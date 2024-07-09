@@ -1,15 +1,14 @@
-﻿using System.Data.Common;
-using System.Management.Automation;
+﻿using System.Management.Automation;
 using PowerRaker.Model.Users;
 
 namespace PowerRaker;
 
 [Cmdlet(VerbsCommunications.Disconnect, "Printer")]
-public class DisconnectPrinter : RakerCmdlet
+public class DisconnectPrinter : KlipperCmdlet
 {
     protected override void ExecuteCmdlet()
     {
-        if (this.Connection.IsTokenAuth())
+        if (this.Context.IsTokenAuth())
         {
             var authInfo = PostResult<AuthInfo>("/access/logout");
             if (authInfo.Action == "user_logged_out")
@@ -17,7 +16,7 @@ public class DisconnectPrinter : RakerCmdlet
                 WriteObject($"User {authInfo.Username} logged out. User Connect-KlipperPrinter to reconnect.");
             }
         }
-        RakerConnection.Current = null;
+        PrinterContext.Current = null;
 
     }
 }

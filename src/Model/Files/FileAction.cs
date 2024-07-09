@@ -1,5 +1,3 @@
-using System.Management.Automation.Provider;
-
 namespace PowerRaker.Model.Files
 {
     public class FileAction

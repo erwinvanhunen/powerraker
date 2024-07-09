@@ -1,12 +1,11 @@
 using System.Management.Automation;
-using System.Text.Json;
 using PowerRaker.Model.Files;
 
 namespace PowerRaker.Files
 {
 
     [Cmdlet(VerbsCommon.Get, "FileRoots")]
-    public class GetFileRoots : RakerCmdlet
+    public class GetFileRoots : KlipperCmdlet
     {
         protected override void ExecuteCmdlet()
         {

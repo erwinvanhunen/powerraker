@@ -1,13 +1,10 @@
 using System.Management.Automation;
-using System.Security.Cryptography.X509Certificates;
-using System.Text.Json;
-using PowerRaker.Model.PrinterStatus;
 
 namespace PowerRaker.printmanagement
 {
 
     [Cmdlet(VerbsLifecycle.Start, "Print")]
-    public class StartPrintFile : RakerCmdlet
+    public class StartPrintFile : KlipperCmdlet
     {
         [Parameter(Mandatory = true)]
         public required string Filename {get;set;}

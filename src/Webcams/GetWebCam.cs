@@ -5,7 +5,7 @@ namespace PowerRaker.Webcams
 {
 
     [Cmdlet(VerbsCommon.Get, "WebCam")]
-    public class GetWebCam : RakerCmdlet
+    public class GetWebCam : KlipperCmdlet
     {
         protected override void ExecuteCmdlet()
         {

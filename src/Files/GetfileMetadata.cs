@@ -5,7 +5,7 @@ namespace PowerRaker.Files
 {
 
     [Cmdlet(VerbsCommon.Get, "FileMetadata")]
-    public class GetFileMetadata : RakerCmdlet
+    public class GetFileMetadata : KlipperCmdlet
     {
         [Parameter(Mandatory = true)]
         public required string Name { get; set; }

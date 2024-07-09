@@ -5,7 +5,7 @@ namespace PowerRaker.PrinterStatus
 {
 
     [Cmdlet(VerbsCommon.Get, "PrinterObjects")]
-    public class GetPrinterObjects : RakerCmdlet
+    public class GetPrinterObjects : KlipperCmdlet
     {
         protected override void ExecuteCmdlet()
         {
