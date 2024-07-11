@@ -5,29 +5,28 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-KlipperCachedGCodeResponses
+# Disconnect-Printer
 
 ## SYNOPSIS
-Retrieves the cached GCode responses
+Disconnects the current session from the printer. And subsequent cmdlet call to your printer will fail. If the connection was made with a username and password, you will have to connect again.
 
 ## SYNTAX
 
 ```
-Get-KlipperCachedGCodeResponses [-Connection <PrinterContext>] [-Count <Int32>] [<CommonParameters>]
+Disconnect-Printer [-Connection <PrinterContext>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This cmdlet returns the cached GCode responses.
-Default count is 100.
+{{ Fill in the Description }}
 
 ## EXAMPLES
 
-### EXAMPLE 1
-```
-Get-KlipperCachedGCodeResponses
+### Example 1
+```powershell
+PS C:\> {{ Add example code here }}
 ```
 
-Returns the last 100 cached GCode responses.
+{{ Add example description here }}
 
 ## PARAMETERS
 
@@ -46,28 +45,15 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Count
-Number of responses to return
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: 100
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
+### None
 ## OUTPUTS
 
+### System.Object
 ## NOTES
 
 ## RELATED LINKS

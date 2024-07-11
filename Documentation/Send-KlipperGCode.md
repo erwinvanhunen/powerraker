@@ -5,31 +5,45 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-KlipperCachedGCodeResponses
+# Send-KlipperGCode
 
 ## SYNOPSIS
-Retrieves the cached GCode responses
+{{ Fill in the Synopsis }}
 
 ## SYNTAX
 
 ```
-Get-KlipperCachedGCodeResponses [-Connection <PrinterContext>] [-Count <Int32>] [<CommonParameters>]
+Send-KlipperGCode -Code <String> [-Connection <PrinterContext>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This cmdlet returns the cached GCode responses.
-Default count is 100.
+{{ Fill in the Description }}
 
 ## EXAMPLES
 
-### EXAMPLE 1
-```
-Get-KlipperCachedGCodeResponses
+### Example 1
+```powershell
+PS C:\> {{ Add example code here }}
 ```
 
-Returns the last 100 cached GCode responses.
+{{ Add example description here }}
 
 ## PARAMETERS
+
+### -Code
+{{ Fill Code Description }}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -Connection
 {{ Fill Connection Description }}
@@ -46,28 +60,15 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Count
-Number of responses to return
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: 100
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
+### None
 ## OUTPUTS
 
+### System.Object
 ## NOTES
 
 ## RELATED LINKS

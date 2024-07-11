@@ -5,29 +5,29 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-KlipperCachedGCodeResponses
+# Get-KlipperWebcamShapshot
 
 ## SYNOPSIS
-Retrieves the cached GCode responses
+{{ Fill in the Synopsis }}
 
 ## SYNTAX
 
 ```
-Get-KlipperCachedGCodeResponses [-Connection <PrinterContext>] [-Count <Int32>] [<CommonParameters>]
+Get-KlipperWebcamShapshot [-Connection <PrinterContext>] [-Webcam <String>] [-Filename <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This cmdlet returns the cached GCode responses.
-Default count is 100.
+{{ Fill in the Description }}
 
 ## EXAMPLES
 
-### EXAMPLE 1
-```
-Get-KlipperCachedGCodeResponses
+### Example 1
+```powershell
+PS C:\> {{ Add example code here }}
 ```
 
-Returns the last 100 cached GCode responses.
+{{ Add example description here }}
 
 ## PARAMETERS
 
@@ -46,17 +46,32 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Count
-Number of responses to return
+### -Filename
+{{ Fill Filename Description }}
 
 ```yaml
-Type: Int32
+Type: String
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: 100
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Webcam
+{{ Fill Webcam Description }}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -66,8 +81,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
+### None
 ## OUTPUTS
 
+### System.Object
 ## NOTES
 
 ## RELATED LINKS

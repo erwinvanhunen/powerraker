@@ -5,31 +5,46 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-KlipperCachedGCodeResponses
+# Set-KlipperPressureAdvance
 
 ## SYNOPSIS
-Retrieves the cached GCode responses
+{{ Fill in the Synopsis }}
 
 ## SYNTAX
 
 ```
-Get-KlipperCachedGCodeResponses [-Connection <PrinterContext>] [-Count <Int32>] [<CommonParameters>]
+Set-KlipperPressureAdvance [-Advance <Double>] [-SmoothTime <Double>] [-Connection <PrinterContext>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This cmdlet returns the cached GCode responses.
-Default count is 100.
+{{ Fill in the Description }}
 
 ## EXAMPLES
 
-### EXAMPLE 1
-```
-Get-KlipperCachedGCodeResponses
+### Example 1
+```powershell
+PS C:\> {{ Add example code here }}
 ```
 
-Returns the last 100 cached GCode responses.
+{{ Add example description here }}
 
 ## PARAMETERS
+
+### -Advance
+{{ Fill Advance Description }}
+
+```yaml
+Type: Double
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -Connection
 {{ Fill Connection Description }}
@@ -46,17 +61,17 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Count
-Number of responses to return
+### -SmoothTime
+{{ Fill SmoothTime Description }}
 
 ```yaml
-Type: Int32
+Type: Double
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: 100
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -66,8 +81,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
+### None
 ## OUTPUTS
 
+### System.Object
 ## NOTES
 
 ## RELATED LINKS
