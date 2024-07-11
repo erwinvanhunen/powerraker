@@ -4,7 +4,7 @@ using PowerRaker.Model.PrinterStatus;
 namespace PowerRaker.PrinterStatus
 {
 
-    [Cmdlet(VerbsCommon.Get, "ExtruderStatus")]
+    [Cmdlet(VerbsCommon.Get, PREFIX + "ExtruderStatus")]
     public class ExtruderStatus : KlipperCmdlet
     {
         [Parameter(Mandatory = false)]

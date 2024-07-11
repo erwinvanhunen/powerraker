@@ -6,7 +6,7 @@ using PowerRaker.Model.Job;
 namespace PowerRaker
 {
 
-    [Cmdlet(VerbsCommon.Get, "CurrentJob")]
+    [Cmdlet(VerbsCommon.Get, PREFIX + "CurrentJob")]
     public class GetCurrentJob : KlipperCmdlet
     {
         [Parameter(Mandatory = false)]

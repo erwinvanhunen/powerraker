@@ -4,7 +4,7 @@ using PowerRaker.Model.PrinterStatus;
 namespace PowerRaker.PrinterStatus
 {
 
-    [Cmdlet(VerbsCommon.Get, "ToolheadStatus")]
+    [Cmdlet(VerbsCommon.Get, PREFIX + "ToolheadStatus")]
     public class GetToolheadStatus : KlipperCmdlet
     {
         [Parameter(Mandatory = false)]

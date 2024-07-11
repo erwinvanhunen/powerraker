@@ -3,7 +3,7 @@ using System.Management.Automation;
 namespace PowerRaker.Administration
 {
 
-    [Cmdlet(VerbsCommon.Get, "TemperatureData")]
+    [Cmdlet(VerbsCommon.Get, PREFIX + "TemperatureData")]
     public class GetTemperatureData : KlipperCmdlet
     {
         [Parameter(Mandatory = false)]

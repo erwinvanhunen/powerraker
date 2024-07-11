@@ -4,7 +4,7 @@ using PowerRaker.Model.Files;
 namespace PowerRaker.Files
 {
 
-    [Cmdlet(VerbsCommon.Get, "FileMetadata")]
+    [Cmdlet(VerbsCommon.Get, PREFIX + "FileMetadata")]
     public class GetFileMetadata : KlipperCmdlet
     {
         [Parameter(Mandatory = true)]

@@ -40,4 +40,8 @@ namespace PowerRaker.Model.PrinterStatus
         public List<string>? AvailableMonitors { get; set; }
     }
 
+    public class TemperatureSensor
+    {
+        public double? Temperature { get; set; }
+    }
 }

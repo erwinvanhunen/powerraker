@@ -9,7 +9,7 @@ namespace PowerRaker.Administration
         Klipper
     }
 
-    [Cmdlet(VerbsLifecycle.Request, "LogRollover")]
+    [Cmdlet(VerbsLifecycle.Request, PREFIX + "LogRollover")]
     public class RequestLogRollover : KlipperCmdlet
     {
         [Parameter(Mandatory = false)]

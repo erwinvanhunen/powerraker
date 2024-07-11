@@ -3,8 +3,8 @@ using System.Security;
 
 namespace PowerRaker;
 
-[Cmdlet(VerbsCommunications.Connect, "Printer")]
-public class ConnectPrinter : PSCmdlet
+[Cmdlet(VerbsCommunications.Connect, PREFIX + "Printer")]
+public class ConnectPrinter : CmdletBase
 {
     [Parameter(Mandatory = true, Position = 0, ParameterSetName = ParameterAttribute.AllParameterSets)]
     public required string Printer { get; set; }

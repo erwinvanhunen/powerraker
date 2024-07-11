@@ -4,7 +4,7 @@ using PowerRaker.Utils;
 
 namespace PowerRaker
 {
-    public abstract class KlipperCmdlet : PSCmdlet
+    public abstract class KlipperCmdlet : CmdletBase
     {
         [Parameter(Mandatory = false)]
         public PrinterContext? Connection { get; set; }
@@ -58,6 +58,12 @@ namespace PowerRaker
             {
                 return default;
             }
+        }
+
+        internal string? SendGCode(string code)
+        {
+            var result = PostResult<string>($"/printer/gcode/script?script={code}");
+            return result;
         }
 
         internal byte[] GetBinaryResult(string url)
@@ -132,10 +138,6 @@ namespace PowerRaker
             }
         }
 
-        internal bool ParameterSpecified(string parameterName)
-        {
-            return MyInvocation.BoundParameters.ContainsKey(parameterName);
-        }
-
+     
     }
 }

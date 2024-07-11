@@ -4,7 +4,7 @@ using PowerRaker.Model.Users;
 namespace PowerRaker.Webcams
 {
 
-    [Cmdlet(VerbsCommon.Remove, "User")]
+    [Cmdlet(VerbsCommon.Remove, PREFIX + "User")]
     public class RemoveUser : KlipperCmdlet
     {
         [Parameter(Mandatory = true)]

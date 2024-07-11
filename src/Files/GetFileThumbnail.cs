@@ -7,7 +7,7 @@ using PowerRaker.Utils;
 namespace PowerRaker.Files
 {
 
-    [Cmdlet(VerbsCommon.Get, "FileThumbnail")]
+    [Cmdlet(VerbsCommon.Get, PREFIX + "FileThumbnail")]
     public class GetFileThumbnail : KlipperCmdlet
     {
         [Parameter(Mandatory = true)]

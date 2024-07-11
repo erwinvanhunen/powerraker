@@ -4,7 +4,7 @@ using PowerRaker.Model.UpdateManagement;
 namespace PowerRaker.UpdateManagement
 {
 
-    [Cmdlet(VerbsCommon.Get, "UpdateStatus")]
+    [Cmdlet(VerbsCommon.Get, PREFIX + "UpdateStatus")]
     public class GetUpdateStatus : KlipperCmdlet
     {
         [Parameter(Mandatory = false)]

@@ -2,9 +2,9 @@ using System.Management.Automation;
 
 namespace PowerRaker.Administration
 {
-    [Cmdlet(VerbsLifecycle.Restart, "Firmware")]
+    [Cmdlet(VerbsLifecycle.Restart, PREFIX + "Firmware")]
 
-    public class RestartFirmware: KlipperCmdlet
+    public class RestartFirmware : KlipperCmdlet
     {
         protected override void ExecuteCmdlet()
         {

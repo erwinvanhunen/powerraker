@@ -4,8 +4,8 @@ using PowerRaker.Model.Webcams;
 namespace PowerRaker.Webcams
 {
 
-    [Cmdlet(VerbsCommon.Get, "WebCam")]
-    public class GetWebCam : KlipperCmdlet
+    [Cmdlet(VerbsCommon.Get, PREFIX + "Webcam")]
+    public class GetWebcam : KlipperCmdlet
     {
         protected override void ExecuteCmdlet()
         {

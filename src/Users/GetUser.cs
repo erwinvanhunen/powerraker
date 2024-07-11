@@ -4,7 +4,7 @@ using PowerRaker.Model.Users;
 namespace PowerRaker.Webcams
 {
 
-    [Cmdlet(VerbsCommon.Get, "User")]
+    [Cmdlet(VerbsCommon.Get, PREFIX + "User")]
     public class GetUser : KlipperCmdlet
     {
         [Parameter(Mandatory = false)]

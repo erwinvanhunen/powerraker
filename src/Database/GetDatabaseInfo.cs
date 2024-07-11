@@ -4,7 +4,7 @@ using PowerRaker.Model.Database;
 namespace PowerRaker.Webcams
 {
 
-    [Cmdlet(VerbsCommon.Get, "DatabaseInfo")]
+    [Cmdlet(VerbsCommon.Get, PREFIX + "DatabaseInfo")]
     public class GetDatabaseInfo : KlipperCmdlet
     {
         protected override void ExecuteCmdlet()

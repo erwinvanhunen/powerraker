@@ -10,7 +10,7 @@ namespace PowerRaker
         Config
     }
 
-    [Cmdlet(VerbsCommon.Remove, "File")]
+    [Cmdlet(VerbsCommon.Remove, PREFIX + "File")]
     public class RemoveFile : KlipperCmdlet
     {
         [Parameter(Mandatory = true)]

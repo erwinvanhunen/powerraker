@@ -3,7 +3,7 @@ using System.Management.Automation;
 namespace PowerRaker.UpdateManagement
 {
 
-    [Cmdlet(VerbsLifecycle.Invoke, "Update")]
+    [Cmdlet(VerbsLifecycle.Invoke, PREFIX + "Update")]
     public class InvokeUpdate : KlipperCmdlet
     {
         [Parameter(Mandatory = false, ParameterSetName = "System")]

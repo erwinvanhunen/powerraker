@@ -2,7 +2,7 @@ using System.Management.Automation;
 
 namespace PowerRaker.Administration
 {
-    [Cmdlet(VerbsLifecycle.Stop, "Printer")]
+    [Cmdlet(VerbsLifecycle.Stop, PREFIX + "Printer")]
 
     public class StopPrinter : KlipperCmdlet
     {

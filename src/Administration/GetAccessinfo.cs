@@ -4,7 +4,7 @@ using PowerRaker.Model.Administration;
 namespace PowerRaker.Administration
 {
 
-    [Cmdlet(VerbsCommon.Get, "Accessinfo")]
+    [Cmdlet(VerbsCommon.Get, PREFIX + "Accessinfo")]
     public class GetAccessInfo : KlipperCmdlet
     {
         protected override void ExecuteCmdlet()

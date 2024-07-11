@@ -3,7 +3,7 @@ using PowerRaker.Model.Administration;
 
 namespace PowerRaker.Administration
 {
-    [Cmdlet(VerbsCommon.Get, "CachedGCodeResponses")]
+    [Cmdlet(VerbsCommon.Get, PREFIX + "CachedGCodeResponses")]
     public class GetCachedGCodeResponses : KlipperCmdlet
     {
         [Parameter(Mandatory = false)]

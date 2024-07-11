@@ -4,7 +4,7 @@ using PowerRaker.Model.Announcements;
 namespace PowerRaker.printmanagement
 {
 
-    [Cmdlet(VerbsCommon.Get, "Announcement")]
+    [Cmdlet(VerbsCommon.Get, PREFIX + "Announcement")]
     public class GetAnnouncement : KlipperCmdlet
     {
         [Parameter(Mandatory = false)]

@@ -3,7 +3,7 @@ using System.Management.Automation;
 namespace PowerRaker.Files
 {
 
-    [Cmdlet(VerbsCommon.Get, "File")]
+    [Cmdlet(VerbsCommon.Get, PREFIX + "File")]
     public class GetFile : KlipperCmdlet
     {
         const string Param_FOLDER = "Folder";

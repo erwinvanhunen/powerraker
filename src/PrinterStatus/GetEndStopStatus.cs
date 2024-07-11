@@ -4,7 +4,7 @@ using PowerRaker.Model.PrinterStatus;
 namespace PowerRaker.PrinterStatus
 {
 
-    [Cmdlet(VerbsCommon.Get, "EndStopStatus")]
+    [Cmdlet(VerbsCommon.Get, PREFIX + "EndStopStatus")]
     public class GetEndStopStatus : KlipperCmdlet
     {
         protected override void ExecuteCmdlet()

@@ -4,16 +4,25 @@ using PowerRaker.Model.PrinterStatus;
 namespace PowerRaker.PrinterStatus
 {
 
-    [Cmdlet(VerbsCommon.Get, "Sensor")]
+    [Cmdlet(VerbsCommon.Get, PREFIX + "Sensor")]
     public class GetSensor : KlipperCmdlet
     {
         [Parameter(Mandatory = false)]
-        public SwitchParameter Extended {get;set;}
+        public SwitchParameter Extended { get; set; }
 
         protected override void ExecuteCmdlet()
         {
-            var result = GetResult<Sensor>($"/server/sensors/list?extended={(Extended ? "true": "false")}");
-            WriteObject(result);
+            try
+            {
+                var result = GetResult<Sensor>($"/server/sensors/list?extended={(Extended ? "True" : "False")}");
+                WriteObject(result);
+            }
+            catch (Exception)
+            {
+
+                WriteWarning($"No sensors found. Did you configure [sensor] component? Use Get-{PREFIX}Temperature to retrieve the temperature status.");
+            }
+
         }
     }
 }

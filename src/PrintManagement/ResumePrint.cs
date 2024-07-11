@@ -3,7 +3,7 @@ using System.Management.Automation;
 namespace PowerRaker.printmanagement
 {
 
-    [Cmdlet(VerbsLifecycle.Resume, "Print")]
+    [Cmdlet(VerbsLifecycle.Resume, PREFIX + "Print")]
     public class ResumePrint : KlipperCmdlet
     {
         protected override void ExecuteCmdlet()

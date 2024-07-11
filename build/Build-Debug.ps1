@@ -43,7 +43,6 @@ $manifest = "@{
 	CmdletsToExport = @($cmdletsString)
 	VariablesToExport = '*'
 	AliasesToExport = '*'
-	DefaultCommandPrefix = 'Klipper'
 	FormatsToProcess = 'PowerRaker.Format.ps1xml' 
 	PrivateData = @{
 		PSData = @{

@@ -2,7 +2,7 @@ using System.Management.Automation;
 
 namespace PowerRaker.Administration
 {
-    [Cmdlet(VerbsLifecycle.Restart, "Server")]
+    [Cmdlet(VerbsLifecycle.Restart, PREFIX + "Server")]
 
     public class RestartServer : KlipperCmdlet
     {

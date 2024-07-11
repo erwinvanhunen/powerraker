@@ -4,7 +4,7 @@ using PowerRaker.Model.Files;
 namespace PowerRaker.Files
 {
 
-    [Cmdlet(VerbsCommon.Get, "FileRoots")]
+    [Cmdlet(VerbsCommon.Get, PREFIX + "FileRoots")]
     public class GetFileRoots : KlipperCmdlet
     {
         protected override void ExecuteCmdlet()

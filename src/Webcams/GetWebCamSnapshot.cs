@@ -4,8 +4,8 @@ using PowerRaker.Model.Webcams;
 namespace PowerRaker.Webcams
 {
 
-    [Cmdlet(VerbsCommon.Get, "WebCamShapshot")]
-    public class GetWebCamSnapshot : KlipperCmdlet
+    [Cmdlet(VerbsCommon.Get, PREFIX + "WebcamShapshot")]
+    public class GetWebcamSnapshot : KlipperCmdlet
     {
         [Parameter(Mandatory = false)]
         public string? Webcam = null;
@@ -45,7 +45,6 @@ namespace PowerRaker.Webcams
                 else
                 {
                     throw new ItemNotFoundException("Webcam not found");
-                    //WriteError(new ErrorRecord(new ItemNotFoundException($"Webcam {Webcam} not found. Use Get-PrinterWebCam to retrieve webcam."), "WEBCAMNOTFOUND", ErrorCategory.InvalidArgument, this));
                 }
             }
         }

@@ -4,8 +4,8 @@ using PowerRaker.Model.Webcams;
 namespace PowerRaker.Webcams
 {
 
-    [Cmdlet(VerbsDiagnostic.Test, "WebCam")]
-    public class TestWebCam : KlipperCmdlet
+    [Cmdlet(VerbsDiagnostic.Test, PREFIX +  "Webcam")]
+    public class TestWebcam : KlipperCmdlet
     {
         [Parameter(Mandatory = true, ParameterSetName = "ByName")]
         public required string Name { get; set; }

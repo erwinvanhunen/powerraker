@@ -3,7 +3,7 @@ using System.Management.Automation;
 namespace PowerRaker.printmanagement
 {
 
-    [Cmdlet(VerbsLifecycle.Start, "Print")]
+    [Cmdlet(VerbsLifecycle.Start, PREFIX + "Print")]
     public class StartPrintFile : KlipperCmdlet
     {
         [Parameter(Mandatory = true)]

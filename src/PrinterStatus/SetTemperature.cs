@@ -5,7 +5,7 @@ namespace PowerRaker.PrinterStatus
 {
 
 
-    [Cmdlet(VerbsCommon.Set, "Temperature")]
+    [Cmdlet(VerbsCommon.Set, PREFIX + "Temperature")]
     public class SetTemperature : KlipperCmdlet, IDynamicParameters
     {
 
@@ -13,7 +13,7 @@ namespace PowerRaker.PrinterStatus
         private const string ParameterSet_FANS = "Fans";
 
         [Parameter(Mandatory = true)]
-        public double Temperature { get; set; }
+        public double TargetTemperature { get; set; }
 
         public object GetDynamicParameters()
         {
@@ -118,13 +118,11 @@ namespace PowerRaker.PrinterStatus
         {
             if (ParameterSetName == ParameterSet_HEATERS)
             {
-                var result = PostResult<string>($"/printer/gcode/script?script=SET_HEATER_TEMPERATURE HEATER={Heater} TARGET={Temperature}");
-                WriteObject(result);
+                SendGCode($"SET_HEATER_TEMPERATURE HEATER={Heater} TARGET={TargetTemperature}");
             }
             else
             {
-                var result = PostResult<string>($"/printer/gcode/script?script=SET_TEMPERATURE_FAN_TARGET TEMPERATURE_FAN={Fan} TARGET={Temperature}");
-                WriteObject(result);
+                SendGCode($"SET_TEMPERATURE_FAN_TARGET TEMPERATURE_FAN={Fan} TARGET={TargetTemperature}");
             }
 
         }

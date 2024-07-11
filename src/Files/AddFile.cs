@@ -10,7 +10,7 @@ namespace PowerRaker.Files
         Config
     }
 
-    [Cmdlet(VerbsCommon.Add, "File")]
+    [Cmdlet(VerbsCommon.Add, PREFIX + "File")]
     public class AddFile : KlipperCmdlet
     {
         [Parameter(Mandatory = true)]
