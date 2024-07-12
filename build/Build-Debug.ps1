@@ -32,7 +32,7 @@ $cmdletsString = Start-ThreadJob -ScriptBlock $scriptBlock | Receive-Job -Wait
 
 $manifest = "@{
 	NestedModules =  'powerraker.dll'
-	ModuleVersion = '1.0.0'
+	ModuleVersion = '0.0.1'
 	Description = 'Moonraker PowerShell Cmdlets'
 	GUID = '7727435a-7d02-4ef0-ae37-3f69a7de9a2d'
 	Author = 'Erwin van Hunen'
