@@ -27,8 +27,12 @@ $scriptBlock = {
     Import-Module -Name "$destinationFolder/powerraker.dll" -DisableNameChecking
     $cmdlets = get-command -Module powerraker | ForEach-Object { "`"$_`"" }
     $cmdlets -Join ","
+
+	Write-Host "Updating documentation folder" -ForegroundColor Yellow
+	Import-module -Name platyPS
+	Update-MarkdownHelpModule -Path "$input/../documentation"
 }
-$cmdletsString = Start-ThreadJob -ScriptBlock $scriptBlock | Receive-Job -Wait
+$cmdletsString = Start-Job -ScriptBlock $scriptBlock -InputObject $PSScriptRoot | Receive-Job -Wait
 
 $manifest = "@{
 	NestedModules =  'powerraker.dll'
@@ -56,4 +60,5 @@ $manifest = "@{
 $manifest | Out-File "$destinationFolder/powerraker.psd1"
 
 Write-Host "Generating help file" -ForegroundColor Yellow
+
 New-ExternalHelp -Path "$PSScriptRoot/../documentation" -OutputPath $destinationFolder

@@ -4,11 +4,9 @@ using PowerRaker.Model.PrinterStatus;
 namespace PowerRaker.PrinterStatus
 {
 
-    [Cmdlet(VerbsCommon.Get, PREFIX + "ExtruderStatus")]
-    public class GetExtruderStatus : KlipperCmdlet
+    [Cmdlet(VerbsCommon.Get, PREFIX + "PressureAdvance")]
+    public class GetPressureAdvance : KlipperCmdlet
     {
-        [Parameter(Mandatory = false)]
-        public SwitchParameter Extended { get; set; }
 
         protected override void ExecuteCmdlet()
         {
@@ -22,7 +20,7 @@ namespace PowerRaker.PrinterStatus
                 result.Status.TryGetValue("extruder", out Extruder? extruder);
                 if (extruder != null)
                 {
-                    WriteObject(extruder);
+                    WriteObject(new { extruder.PressureAdvance, extruder.SmoothTime });
                 }
             }
         }

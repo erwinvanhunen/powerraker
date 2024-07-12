@@ -5,37 +5,51 @@ online version:
 schema: 2.0.0
 ---
 
-# Invoke-KlipperHostShutdown
+# Request-KlipperHostReboot
 
 ## SYNOPSIS
-Shuts down the host
+Reboots the host machine.
 
 ## SYNTAX
 
 ```
-Invoke-KlipperHostShutdown [-Connection <PrinterContext>] [<CommonParameters>]
+Request-KlipperHostReboot [-Force] [-Connection <PrinterContext>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Requests the host OS to shut down.
+Reboots the host machine.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Invoke-KlipperHostShutdown
+PS> Request-KlipperHostReboot
 ```
 
-Shuts down the host.
+Reboots the current host machine.
 
 ## PARAMETERS
 
 ### -Connection
 Optional connection object to handle connections with multiple printers.
 
-
 ```yaml
 Type: PrinterContext
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Force
+If specified no confirmation will be asked.
+
+```yaml
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 

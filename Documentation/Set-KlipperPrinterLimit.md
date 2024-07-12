@@ -31,8 +31,8 @@ PS C:\> {{ Add example code here }}
 
 ## PARAMETERS
 
-### -Acceleration
-{{ Fill Acceleration Description }}
+### -AccelToDecel
+{{ Fill AccelToDecel Description }}
 
 ```yaml
 Type: Int32
@@ -46,8 +46,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -AccelToDecel
-{{ Fill AccelToDecel Description }}
+### -Acceleration
+{{ Fill Acceleration Description }}
 
 ```yaml
 Type: Int32

@@ -13,7 +13,7 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-Get-KlipperTemperature [-Connection <PrinterContext>] [-Sensor <String>] [<CommonParameters>]
+Get-KlipperTemperature [-Connection <PrinterContext>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -36,21 +36,6 @@ Optional connection object to handle connections with multiple printers.
 
 ```yaml
 Type: PrinterContext
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Sensor
-{{ Fill Sensor Description }}
-
-```yaml
-Type: String
 Parameter Sets: (All)
 Aliases:
 

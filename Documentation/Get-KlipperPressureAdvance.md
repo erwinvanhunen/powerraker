@@ -5,28 +5,28 @@ online version:
 schema: 2.0.0
 ---
 
-# Invoke-KlipperHostReboot
+# Get-KlipperPressureAdvance
 
 ## SYNOPSIS
-Reboots the host
+Returns the pressure advance and smooth time values.
 
 ## SYNTAX
 
 ```
-Invoke-KlipperHostReboot [-Connection <PrinterContext>] [<CommonParameters>]
+Get-KlipperPressureAdvance [-Connection <PrinterContext>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This requests the host OS to reboot.
+Returns the pressure advance and smooth time values.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS:\> Invoke-KlipperHostReboot
+PS> Get-KlipperPressureAdvance
 ```
 
-Reboots the host
+Returns the current pressure advance and smooth time values set. 
 
 ## PARAMETERS
 

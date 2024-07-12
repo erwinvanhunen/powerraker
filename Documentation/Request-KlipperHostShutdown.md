@@ -5,28 +5,28 @@ online version:
 schema: 2.0.0
 ---
 
-# Invoke-KlipperMacro
+# Request-KlipperHostShutdown
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Shuts down the current host.
 
 ## SYNTAX
 
 ```
-Invoke-KlipperMacro [-Parameters <String>] [-Connection <PrinterContext>] [<CommonParameters>]
+Request-KlipperHostShutdown [-Force] [-Connection <PrinterContext>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Shuts down the current host.
 
 ## EXAMPLES
 
 ### Example 1
-```
-PS C:\> {{ Add example code here }}
+```powershell
+Request-KlipperHostShutdown
 ```
 
-{{ Add example description here }}
+After confirmation the host will be requested to shut down.
 
 ## PARAMETERS
 
@@ -45,11 +45,11 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Parameters
-{{ Fill Parameters Description }}
+### -Force
+If specified no confirmation will be asked.
 
 ```yaml
-Type: String
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 

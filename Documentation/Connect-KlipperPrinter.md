@@ -29,26 +29,26 @@ This cmdlet connects the current PowerShell session to a Klipper printer using t
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
-Connect-KlipperPrinter http://myprinter
-Get-KlipperCurrentJob
+```powershell
+PS> Connect-KlipperPrinter http://myprinter
+PS> Get-KlipperCurrentJob
 ```
 
 Sets up the environment use the other PowerRaker cmdlets with the specified printer and returns the current ongoing job on the printer.
 
 ### EXAMPLE 2
-```
-Connect-KlipperPrinter http://myprinter -User myuser1
+```powershell
+PS> Connect-KlipperPrinter http://myprinter -User myuser1
 ```
 
 Sets up the environment use the other PowerRaker cmdlets with the specified printer.
 
 ### EXAMPLE 3
-```
-$conn1 = Connect-KlipperPrinter -Printer http://myprinter -ReturnConnection
-$conn1 = Connect-KlipperPrinter -Printer http://myotherprinter -ReturnConnection
-Get-KlipperCurrentJob -Connection $conn1
-Get-KlipperCurrentJob -Connection $conn2
+```powershell
+PS> $conn1 = Connect-KlipperPrinter -Printer http://myprinter -ReturnConnection
+PS> $conn1 = Connect-KlipperPrinter -Printer http://myotherprinter -ReturnConnection
+PS> Get-KlipperCurrentJob -Connection $conn1
+PS> Get-KlipperCurrentJob -Connection $conn2
 ```
 
 Sets up the environment to use the other Klipper cmdlets with the specified printer and returns ongoing jobs on both printers.

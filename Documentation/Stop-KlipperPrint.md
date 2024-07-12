@@ -13,7 +13,7 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-Stop-KlipperPrint [-Connection <PrinterContext>] [<CommonParameters>]
+Stop-KlipperPrint [-Force] [-Connection <PrinterContext>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -35,6 +35,21 @@ Optional connection object to handle connections with multiple printers.
 
 ```yaml
 Type: PrinterContext
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Force
+If specified no confirmation will be asked.
+
+```yaml
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
