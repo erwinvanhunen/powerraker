@@ -1,4 +1,4 @@
-# PowerRaker : PowerShell Cmdlets for Klipper based 3d Printers
+# PowerRaker : PowerShell Cmdlets for Klipper based 3D Printers
 
 This is a ongoing side project of me where I build cmdlets for Klipper based 3D printers.
 
