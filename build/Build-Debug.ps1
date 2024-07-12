@@ -6,7 +6,7 @@ Invoke-Expression $buildCmd
 $destinationFolder = "$HOME/.local/share/powershell/Modules/PowerRaker"
 
 if (Test-Path $destinationFolder) {
-    Remove-Item $destinationFolder\* -Recurse -Force -ErrorAction SilentlyContinue
+	Remove-Item $destinationFolder\* -Recurse -Force -ErrorAction SilentlyContinue
 }
 
 Write-Host "Creating target folder: $destinationFolder" -ForegroundColor Yellow
@@ -21,16 +21,16 @@ Copy-Item -LiteralPath "$PSScriptRoot/../Resources/PowerRaker.Format.ps1xml" -De
 
 $scriptBlock = {
    
-   $destinationFolder = "~/.local/share/powershell/Modules/PowerRaker"
+	$destinationFolder = "~/.local/share/powershell/Modules/PowerRaker"
    
-    Write-Host "Importing assembly" -ForegroundColor Yellow
-    Import-Module -Name "$destinationFolder/powerraker.dll" -DisableNameChecking
-    $cmdlets = get-command -Module powerraker | ForEach-Object { "`"$_`"" }
-    $cmdlets -Join ","
-
+	Write-Host "Importing assembly" -ForegroundColor Yellow
+	Import-Module -Name "$destinationFolder/powerraker.dll" -DisableNameChecking
+	$cmdlets = get-command -Module powerraker | ForEach-Object { "`"$_`"" }
 	Write-Host "Updating documentation folder" -ForegroundColor Yellow
 	Import-module -Name platyPS
-	Update-MarkdownHelpModule -Path "$input/../documentation"
+	Update-MarkdownHelpModule -Path "$input/../documentation" | Out-Null
+
+	$cmdlets -Join ","
 }
 $cmdletsString = Start-Job -ScriptBlock $scriptBlock -InputObject $PSScriptRoot | Receive-Job -Wait
 

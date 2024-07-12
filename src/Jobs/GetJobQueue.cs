@@ -4,8 +4,8 @@ using PowerRaker.Model.Job;
 namespace PowerRaker.Jobs
 {
 
-    [Cmdlet(VerbsCommon.Get, PREFIX + "JobQueueStatus")]
-    public class GetJobQueueStatus : KlipperCmdlet
+    [Cmdlet(VerbsCommon.Get, PREFIX + "JobQueue")]
+    public class GetJobQueue : KlipperCmdlet
     {
         protected override void ExecuteCmdlet()
         {

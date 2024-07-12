@@ -6,8 +6,8 @@ using PowerRaker.Model.Job;
 namespace PowerRaker
 {
 
-    [Cmdlet(VerbsCommon.Get, PREFIX + "CurrentJob")]
-    public class GetCurrentJob : KlipperCmdlet
+    [Cmdlet(VerbsCommon.Get, PREFIX + "Job")]
+    public class GetJob : KlipperCmdlet
     {
         [Parameter(Mandatory = false)]
         public SwitchParameter Poll;
@@ -76,6 +76,8 @@ namespace PowerRaker
                     if (currentJob.State == "printing")
                     {
                         currentJob.Filename = objectQuery.Status.PrintStats.Filename;
+                        currentJob.Layer = objectQuery.Status.VirtualSdcard.Layer ?? 0;
+                        currentJob.Layers = objectQuery.Status.VirtualSdcard.LayerCount ?? 0;
                         var progress = objectQuery.Status.VirtualSdcard.Progress;
                         currentJob.Progress = (int)(progress * 100);
                         if (EstimatedTime == 0)

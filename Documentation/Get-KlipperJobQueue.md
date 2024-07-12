@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-KlipperJobQueueStatus
+# Get-KlipperJobQueue
 
 ## SYNOPSIS
 {{ Fill in the Synopsis }}
@@ -13,7 +13,7 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-Get-KlipperJobQueueStatus [-Connection <PrinterContext>] [<CommonParameters>]
+Get-KlipperJobQueue [-Connection <PrinterContext>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,7 +22,7 @@ Get-KlipperJobQueueStatus [-Connection <PrinterContext>] [<CommonParameters>]
 ## EXAMPLES
 
 ### Example 1
-```
+```powershell
 PS C:\> {{ Add example code here }}
 ```
 
@@ -31,7 +31,7 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -Connection
-Optional connection object to handle connections with multiple printers.
+{{ Fill Connection Description }}
 
 ```yaml
 Type: PrinterContext
