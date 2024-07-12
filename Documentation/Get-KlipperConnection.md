@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Set-KlipperPressureAdvance
+# Get-KlipperConnection
 
 ## SYNOPSIS
 {{ Fill in the Synopsis }}
@@ -13,8 +13,7 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-Set-KlipperPressureAdvance [-Advance <Double>] [-SmoothTime <Double>] [-Connection <PrinterContext>]
- [<CommonParameters>]
+Get-KlipperConnection [-Connection <PrinterContext>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,7 +22,7 @@ Set-KlipperPressureAdvance [-Advance <Double>] [-SmoothTime <Double>] [-Connecti
 ## EXAMPLES
 
 ### Example 1
-```
+```powershell
 PS C:\> {{ Add example code here }}
 ```
 
@@ -31,41 +30,11 @@ PS C:\> {{ Add example code here }}
 
 ## PARAMETERS
 
-### -Advance
-{{ Fill Advance Description }}
-
-```yaml
-Type: Double
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Connection
 Optional connection object to handle connections with multiple printers.
 
 ```yaml
 Type: PrinterContext
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -SmoothTime
-{{ Fill SmoothTime Description }}
-
-```yaml
-Type: Double
 Parameter Sets: (All)
 Aliases:
 

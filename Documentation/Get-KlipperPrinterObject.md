@@ -13,7 +13,7 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-Get-KlipperPrinterObject [-Name <String>] [-Connection <PrinterContext>] [<CommonParameters>]
+Get-KlipperPrinterObject [-Connection <PrinterContext>] [-Name <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,7 +22,7 @@ Get-KlipperPrinterObject [-Name <String>] [-Connection <PrinterContext>] [<Commo
 ## EXAMPLES
 
 ### Example 1
-```powershell
+```
 PS C:\> {{ Add example code here }}
 ```
 
@@ -31,7 +31,7 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -Connection
-{{ Fill Connection Description }}
+Optional connection object to handle connections with multiple printers.
 
 ```yaml
 Type: PrinterContext

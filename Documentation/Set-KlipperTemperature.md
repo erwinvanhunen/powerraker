@@ -12,8 +12,16 @@ schema: 2.0.0
 
 ## SYNTAX
 
+### Heaters
 ```
-Set-KlipperTemperature -TargetTemperature <Double> [-Connection <PrinterContext>] [<CommonParameters>]
+Set-KlipperTemperature -TargetTemperature <Double> [-Connection <PrinterContext>] [-Heater <String>]
+ [<CommonParameters>]
+```
+
+### Fans
+```
+Set-KlipperTemperature -TargetTemperature <Double> [-Connection <PrinterContext>] [-Fan <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,7 +30,7 @@ Set-KlipperTemperature -TargetTemperature <Double> [-Connection <PrinterContext>
 ## EXAMPLES
 
 ### Example 1
-```powershell
+```
 PS C:\> {{ Add example code here }}
 ```
 
@@ -31,11 +39,41 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -Connection
-{{ Fill Connection Description }}
+Optional connection object to handle connections with multiple printers.
 
 ```yaml
 Type: PrinterContext
 Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Fan
+{{ Fill Fan Description }}
+
+```yaml
+Type: String
+Parameter Sets: Fans
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Heater
+{{ Fill Heater Description }}
+
+```yaml
+Type: String
+Parameter Sets: Heaters
 Aliases:
 
 Required: False

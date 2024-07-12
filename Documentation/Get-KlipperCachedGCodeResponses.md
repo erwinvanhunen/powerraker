@@ -32,7 +32,7 @@ Returns the last 100 cached GCode responses.
 ## PARAMETERS
 
 ### -Connection
-{{ Fill Connection Description }}
+Optional connection object to handle connections with multiple printers.
 
 ```yaml
 Type: PrinterContext

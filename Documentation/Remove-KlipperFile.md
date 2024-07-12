@@ -22,7 +22,7 @@ Remove-KlipperFile -Filename <String> [-Connection <PrinterContext>] [<CommonPar
 ## EXAMPLES
 
 ### Example 1
-```powershell
+```
 PS C:\> {{ Add example code here }}
 ```
 
@@ -31,7 +31,7 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -Connection
-{{ Fill Connection Description }}
+Optional connection object to handle connections with multiple printers.
 
 ```yaml
 Type: PrinterContext

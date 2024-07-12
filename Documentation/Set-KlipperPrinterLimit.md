@@ -23,7 +23,7 @@ Set-KlipperPrinterLimit [-Velocity <Int32>] [-SquareCornerVelocity <Int32>] [-Ac
 ## EXAMPLES
 
 ### Example 1
-```powershell
+```
 PS C:\> {{ Add example code here }}
 ```
 
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -Connection
-{{ Fill Connection Description }}
+Optional connection object to handle connections with multiple printers.
 
 ```yaml
 Type: PrinterContext

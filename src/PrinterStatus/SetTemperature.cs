@@ -44,14 +44,17 @@ namespace PowerRaker.PrinterStatus
 
             if (heaters != null)
             {
-                var attributes = heaters.AvailableHeaters;
+                if (heaters.AvailableHeaters.Any())
+                {
+                    var attributes = heaters.AvailableHeaters;
 
-                var validateSetAttribute = new ValidateSetAttribute(attributes.ToArray());
-                attributeCollection.Add(validateSetAttribute);
+                    var validateSetAttribute = new ValidateSetAttribute(attributes.ToArray());
+                    attributeCollection.Add(validateSetAttribute);
 
-                var runtimeParameter = new RuntimeDefinedParameter(parameterName, typeof(string), attributeCollection);
+                    var runtimeParameter = new RuntimeDefinedParameter(parameterName, typeof(string), attributeCollection);
 
-                parameterDictionary.Add(parameterName, runtimeParameter);
+                    parameterDictionary.Add(parameterName, runtimeParameter);
+                }
             }
         }
 
@@ -75,13 +78,16 @@ namespace PowerRaker.PrinterStatus
             if (objects != null)
             {
                 var fans = objects.Objects.Where(o => o.StartsWith("temperature_fan"));
-                var attributes = fans.Select(f => f.Split(" ")[1]);
-                var validateSetAttribute = new ValidateSetAttribute(attributes.ToArray());
-                attributeCollection.Add(validateSetAttribute);
+                if (fans.Any())
+                {
+                    var attributes = fans.Select(f => f.Split(" ")[1]);
+                    var validateSetAttribute = new ValidateSetAttribute(attributes.ToArray());
+                    attributeCollection.Add(validateSetAttribute);
 
-                var runtimeParameter = new RuntimeDefinedParameter(parameterName, typeof(string), attributeCollection);
+                    var runtimeParameter = new RuntimeDefinedParameter(parameterName, typeof(string), attributeCollection);
+                    parameterDictionary.Add(parameterName, runtimeParameter);
+                }
 
-                parameterDictionary.Add(parameterName, runtimeParameter);
             }
         }
 

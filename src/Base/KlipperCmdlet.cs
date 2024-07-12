@@ -72,18 +72,26 @@ namespace PowerRaker
             return bytes;
         }
 
-        internal T? PostResult<T>(string url, object? payload = null)
+        internal T? PostResult<T>(string url, object? payload = null, bool donotwait = false)
         {
             var output = RestHelper.ExecutePostRequest(Context, url, payload);
-            var result = JsonSerializer.Deserialize<Model.RequestResult<T>>(output, JsonSerializerOptions);
-            if (result != null)
+            if (!donotwait)
             {
-                return result.Result;
+                var result = JsonSerializer.Deserialize<Model.RequestResult<T>>(output, JsonSerializerOptions);
+                if (result != null)
+                {
+                    return result.Result;
+                }
+                else
+                {
+                    return default;
+                }
             }
             else
             {
                 return default;
             }
+
         }
 
 
@@ -138,6 +146,6 @@ namespace PowerRaker
             }
         }
 
-     
+
     }
 }

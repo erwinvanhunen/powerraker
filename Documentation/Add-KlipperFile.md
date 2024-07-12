@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KlipperFile
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Upload a file to the printer
 
 ## SYNTAX
 
@@ -17,21 +17,22 @@ Add-KlipperFile -Filename <String> [-Connection <PrinterContext>] [<CommonParame
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Uploads a file, like a gcode file, to the printer.
 
 ## EXAMPLES
 
 ### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+```
+PS C:\> Add-KlipperFile -Filename ./myfile.gcode
 ```
 
-{{ Add example description here }}
+Uploads the file called myfile.gcode to the printer.
 
 ## PARAMETERS
 
 ### -Connection
-{{ Fill Connection Description }}
+Optional connection object to handle connections with multiple printers.
+
 
 ```yaml
 Type: PrinterContext

@@ -6,7 +6,7 @@ namespace PowerRaker.Utils
 {
     internal static class RestHelper
     {
-        public static string ExecuteGetRequest(PrinterContext connection, string endPoint)
+        public static string? ExecuteGetRequest(PrinterContext connection, string endPoint)
         {
             return ExecuteRequest(connection, endPoint, HttpMethod.Get, null);
         }
@@ -24,17 +24,17 @@ namespace PowerRaker.Utils
             return returnValue;
         }
 
-        public static string ExecutePostRequest(PrinterContext connection, string endPoint, object payload)
+        public static string? ExecutePostRequest(PrinterContext connection, string endPoint, object payload, bool donotwait = false)
         {
-            return ExecuteRequest(connection, endPoint, HttpMethod.Post, payload);
+            return ExecuteRequest(connection, endPoint, HttpMethod.Post, payload, donotwait);
         }
 
-        public static string ExecuteDeleteRequest(PrinterContext connection, string endPoint, object payload)
+        public static string? ExecuteDeleteRequest(PrinterContext connection, string endPoint, object payload)
         {
             return ExecuteRequest(connection, endPoint, HttpMethod.Delete, payload);
         }
 
-        private static string ExecuteRequest(PrinterContext connection, string endPoint, HttpMethod method, object? payload)
+        private static string? ExecuteRequest(PrinterContext connection, string endPoint, HttpMethod method, object? payload, bool donowait = false)
         {
             StringContent? content = null;
             if (payload != null)
@@ -54,29 +54,42 @@ namespace PowerRaker.Utils
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", connection.GetAuthToken());
             }
-            var responseMessage = client.SendAsync(httpRequestMessage).GetAwaiter().GetResult();
-            if (responseMessage.IsSuccessStatusCode)
+            HttpResponseMessage? responseMessage = null;
+            if (donowait)
             {
-                return responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                client.SendAsync(httpRequestMessage);
             }
             else
             {
-                var response = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-
-                var options = new JsonSerializerOptions()
+                responseMessage = client.SendAsync(httpRequestMessage).GetAwaiter().GetResult();
+            }
+            if (!donowait)
+            {
+                if (responseMessage.IsSuccessStatusCode)
                 {
-                    PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
-                };
-                var jsonDocument = JsonSerializer.Deserialize<JsonDocument>(response);
-                if (jsonDocument != null)
-                {
-                    var error = jsonDocument.RootElement.GetProperty("error").Deserialize<Error>(options);
-                    throw new Exception(error?.Message);
+                    return responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
                 }
                 else
                 {
-                    throw new HttpRequestException(responseMessage.ReasonPhrase, new Exception("Request failed"), responseMessage.StatusCode);
+                    var response = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+                    var options = new JsonSerializerOptions()
+                    {
+                        PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
+                    };
+                    var jsonDocument = JsonSerializer.Deserialize<JsonDocument>(response);
+                    if (jsonDocument != null)
+                    {
+                        var error = jsonDocument.RootElement.GetProperty("error").Deserialize<Error>(options);
+                        throw new Exception(error?.Message);
+                    }
+                    else
+                    {
+                        throw new HttpRequestException(responseMessage.ReasonPhrase, new Exception("Request failed"), responseMessage.StatusCode);
+                    }
                 }
+            } else {
+                return null;
             }
         }
 

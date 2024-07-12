@@ -6,10 +6,56 @@ namespace PowerRaker.PrinterStatus
 {
 
     [Cmdlet(VerbsCommon.Get, PREFIX + "PrinterObject")]
-    public class GetPrinterObject : KlipperCmdlet
+    public class GetPrinterObject : KlipperCmdlet, IDynamicParameters
     {
-        [Parameter(Mandatory = false)]
-        public string? Name { get; set; }
+        // [Parameter(Mandatory = false)]
+        // public string? Name { get; set; }
+
+
+        public object GetDynamicParameters()
+        {
+            var parameterDictionary = new RuntimeDefinedParameterDictionary();
+            GetObjects(parameterDictionary);
+            return parameterDictionary;
+        }
+
+        private void GetObjects(RuntimeDefinedParameterDictionary parameterDictionary)
+        {
+            var objects = GetResult<ObjectsList>("/printer/objects/list");
+
+            var attributeCollection = new System.Collections.ObjectModel.Collection<Attribute>();
+
+            var parameterAttribute = new ParameterAttribute
+            {
+                ValueFromPipeline = false,
+                ValueFromPipelineByPropertyName = false,
+                Mandatory = false,
+            };
+
+            attributeCollection.Add(parameterAttribute);
+
+            var validateSetAttribute = new ValidateSetAttribute(objects.Objects.ToArray());
+            attributeCollection.Add(validateSetAttribute);
+
+            var runtimeParameter = new RuntimeDefinedParameter(nameof(Name), typeof(string), attributeCollection);
+
+            parameterDictionary.Add(nameof(Name), runtimeParameter);
+        }
+
+        private string? Name
+        {
+            get
+            {
+                if (ParameterSpecified(nameof(Name)) && MyInvocation.BoundParameters[nameof(Name)] != null)
+                {
+                    return MyInvocation.BoundParameters[nameof(Name)] as string;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
 
         protected override void ExecuteCmdlet()
         {

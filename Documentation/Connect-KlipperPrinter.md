@@ -29,29 +29,29 @@ This cmdlet connects the current PowerShell session to a Klipper printer using t
 ## EXAMPLES
 
 ### EXAMPLE 1
-```powershell
+```
 Connect-KlipperPrinter http://myprinter
-Get-KlipperCurrentJob 
+Get-KlipperCurrentJob
 ```
 
 Sets up the environment use the other PowerRaker cmdlets with the specified printer and returns the current ongoing job on the printer.
 
 ### EXAMPLE 2
-```powershell
+```
 Connect-KlipperPrinter http://myprinter -User myuser1
 ```
 
 Sets up the environment use the other PowerRaker cmdlets with the specified printer.
 
 ### EXAMPLE 3
-```powershell
+```
 $conn1 = Connect-KlipperPrinter -Printer http://myprinter -ReturnConnection
 $conn1 = Connect-KlipperPrinter -Printer http://myotherprinter -ReturnConnection
 Get-KlipperCurrentJob -Connection $conn1
 Get-KlipperCurrentJob -Connection $conn2
 ```
 
-Sets up the environment use the other PowerRaker cmdlets with the specified printer and returns ongoing jobs on both printers.
+Sets up the environment to use the other Klipper cmdlets with the specified printer and returns ongoing jobs on both printers.
 
 ## PARAMETERS
 
@@ -71,7 +71,8 @@ Accept wildcard characters: False
 ```
 
 ### -Password
-The user password as a secure string. When omitted you will be asked to enter it.
+The user password as a secure string.
+When omitted you will be asked to enter it.
 
 ```yaml
 Type: SecureString
@@ -101,7 +102,9 @@ Accept wildcard characters: False
 ```
 
 ### -ReturnConnection
-Returns the current connection as an object. You can use this object to separate connections to multiple printers and use them with the -Connection parameter on each cmdlet. See example 3.
+Returns the current connection as an object.
+You can use this object to separate connections to multiple printers and use them with the -Connection parameter on each cmdlet.
+See example 3.
 
 ```yaml
 Type: SwitchParameter
@@ -110,13 +113,14 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -Source
-The source to use for authentication. Defaults to 'moonraker'.
+The source to use for authentication.
+Defaults to 'moonraker'.
 
 ```yaml
 Type: String

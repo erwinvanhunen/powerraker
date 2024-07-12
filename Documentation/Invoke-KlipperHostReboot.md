@@ -5,67 +5,36 @@ online version:
 schema: 2.0.0
 ---
 
-# Set-KlipperPressureAdvance
+# Invoke-KlipperHostReboot
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Reboots the host
 
 ## SYNTAX
 
 ```
-Set-KlipperPressureAdvance [-Advance <Double>] [-SmoothTime <Double>] [-Connection <PrinterContext>]
- [<CommonParameters>]
+Invoke-KlipperHostReboot [-Connection <PrinterContext>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+This requests the host OS to reboot.
 
 ## EXAMPLES
 
 ### Example 1
-```
-PS C:\> {{ Add example code here }}
+```powershell
+PS:\> Invoke-KlipperHostReboot
 ```
 
-{{ Add example description here }}
+Reboots the host
 
 ## PARAMETERS
-
-### -Advance
-{{ Fill Advance Description }}
-
-```yaml
-Type: Double
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Connection
 Optional connection object to handle connections with multiple printers.
 
 ```yaml
 Type: PrinterContext
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -SmoothTime
-{{ Fill SmoothTime Description }}
-
-```yaml
-Type: Double
 Parameter Sets: (All)
 Aliases:
 

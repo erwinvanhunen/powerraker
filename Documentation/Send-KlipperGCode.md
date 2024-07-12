@@ -22,7 +22,7 @@ Send-KlipperGCode -Code <String> [-Connection <PrinterContext>] [<CommonParamete
 ## EXAMPLES
 
 ### Example 1
-```powershell
+```
 PS C:\> {{ Add example code here }}
 ```
 
@@ -31,7 +31,7 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -Code
-{{ Fill Code Description }}
+Optional connection object to handle connections with multiple printers.
 
 ```yaml
 Type: String

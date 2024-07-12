@@ -42,7 +42,7 @@ namespace PowerRaker
             var result = JsonSerializer.Deserialize<Model.RequestResult<AuthInfo>>(output, options);
             this.Token = result.Result.Token;
             this.RefreshToken = result.Result.RefreshToken;
-            this.TokenExpires = DateTime.Now.AddHours(1);
+            this.TokenExpires = DateTime.Now.AddMinutes(59);
             Current = this;
         }
 

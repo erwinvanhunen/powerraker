@@ -1,3 +1,5 @@
+using System;
+using System.Globalization;
 using System.Management.Automation;
 using PowerRaker.Model.PrinterStatus;
 
@@ -9,24 +11,19 @@ namespace PowerRaker.PrinterStatus
     public class GetTemperature : KlipperCmdlet, IDynamicParameters
     {
         private Dictionary<string, string> sensors = new Dictionary<string, string>();
-        private const string ParameterSet_HEATERS = "Sensor";
-        private const string ParameterSet_FANS = "Fans";
 
         public object GetDynamicParameters()
         {
-
             var parameterDictionary = new RuntimeDefinedParameterDictionary();
-            var objects = GetResult<ObjectsList>("/printer/objects/list");
-            if (objects != null)
-            {
-                GetSensors(objects, parameterDictionary);
-            }
+            GetSensors(parameterDictionary);
             return parameterDictionary;
         }
 
-        private void GetSensors(ObjectsList objects, RuntimeDefinedParameterDictionary parameterDictionary)
+        private void GetSensors(RuntimeDefinedParameterDictionary parameterDictionary)
         {
             const string parameterName = "Sensor";
+            var objects = GetResult<ObjectsList>("/printer/objects/list");
+
             var attributeCollection = new System.Collections.ObjectModel.Collection<Attribute>();
 
             var parameterAttribute = new ParameterAttribute
@@ -34,11 +31,9 @@ namespace PowerRaker.PrinterStatus
                 ValueFromPipeline = false,
                 ValueFromPipelineByPropertyName = false,
                 Mandatory = false,
-                ParameterSetName = ParameterSet_FANS
             };
 
             attributeCollection.Add(parameterAttribute);
-
 
             objects.Objects.Where(o => o.StartsWith("temperature")).ToList().ForEach(a => sensors.Add(a.Split(" ")[1], a));
             sensors.Add("extruder", "extruder");
@@ -52,6 +47,15 @@ namespace PowerRaker.PrinterStatus
             parameterDictionary.Add(parameterName, runtimeParameter);
         }
 
+        private List<string> Getall()
+        {
+            var objects = GetResult<ObjectsList>("/printer/objects/list");
+            var returnValue = new List<string>();
+            returnValue.AddRange(objects.Objects.Where(o => o.StartsWith("temperature")));
+            returnValue.Add("extruder");
+            returnValue.Add("heater_bed");
+            return returnValue;
+        }
 
         private string? Sensor
         {
@@ -73,6 +77,7 @@ namespace PowerRaker.PrinterStatus
         {
             if (ParameterSpecified(nameof(Sensor)))
             {
+
                 if (sensors.TryGetValue(Sensor, out string? fullSensorQualifier))
                 {
                     var o = GetResult<ObjectStatus<TemperatureSensor>>($"/printer/objects/query?{fullSensorQualifier}");
@@ -81,15 +86,27 @@ namespace PowerRaker.PrinterStatus
                         WriteObject(value.Temperature);
                     }
                 }
-                // if (ParameterSetName == ParameterSet_HEATERS)
-                // {
-                //     SendGCode($"SET_HEATER_TEMPERATURE HEATER={Heater} TARGET={TargetTemperature}");
-                // }
-                // else
-                // {
-                //     SendGCode($"SET_TEMPERATURE_FAN_TARGET TEMPERATURE_FAN={Fan} TARGET={TargetTemperature}");
-                // }
+            }
+            else
+            {
 
+                var txtInfo = Host.CurrentCulture.TextInfo;
+                var allObjects = Getall();
+                var objectString = string.Join('&', allObjects);
+
+                var o = GetResult<ObjectStatus<TemperatureSensor>>($"/printer/objects/query?{objectString}");
+                foreach (var sensor in allObjects)
+                {
+                    o.Status.TryGetValue(sensor, out TemperatureSensor? value);
+                    var name = sensor.IndexOf(" ") > 0 ? sensor.Split(" ")[1] : sensor;
+                    var outputObject = new
+                    {
+                        Name = name,
+                        FriendlyName = txtInfo.ToTitleCase(name.Replace("_", " ")),
+                        value.Temperature
+                    };
+                    WriteObject(outputObject);
+                }
             }
         }
     }

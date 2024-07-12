@@ -8,7 +8,9 @@ schema: 2.0.0
 # Disconnect-Printer
 
 ## SYNOPSIS
-Disconnects the current session from the printer. And subsequent cmdlet call to your printer will fail. If the connection was made with a username and password, you will have to connect again.
+Disconnects the current session from the printer.
+And subsequent cmdlet call to your printer will fail.
+If the connection was made with a username and password, you will have to connect again.
 
 ## SYNTAX
 
@@ -22,7 +24,7 @@ Disconnect-Printer [-Connection <PrinterContext>] [<CommonParameters>]
 ## EXAMPLES
 
 ### Example 1
-```powershell
+```
 PS C:\> {{ Add example code here }}
 ```
 
@@ -31,7 +33,7 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -Connection
-{{ Fill Connection Description }}
+Optional connection object to handle connections with multiple printers.
 
 ```yaml
 Type: PrinterContext
