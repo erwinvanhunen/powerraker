@@ -3,7 +3,7 @@ Write-Host "Building PowerRaker"
 $platyPS = Get-Module -ListAvailable | Where-Object { $_.Name -eq "platyPS" }
 if($null -eq $platyPS)
 {
-	Install-Module -Name platyPS -Force -AcceptLicense -Confirm:$true
+	Install-Module -Name platyPS -Force -AcceptLicense -Confirm:$false
 }
 		
 $buildCmd = "dotnet build `"$PSScriptRoot/../src/powerraker.csproj`"" + "--nologo --configuration Debug"
