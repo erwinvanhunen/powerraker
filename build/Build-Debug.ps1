@@ -1,5 +1,11 @@
 Write-Host "Building PowerRaker"
 
+$platyPS = Get-Module -ListAvailable | Where-Object { $_.Name -eq "platyPS" }
+if($null -eq $platyPS)
+{
+	Install-Module -Name platyPS -Force -AcceptLicense -Confirm:$true
+}
+		
 $buildCmd = "dotnet build `"$PSScriptRoot/../src/powerraker.csproj`"" + "--nologo --configuration Debug"
 Invoke-Expression $buildCmd
 
@@ -29,7 +35,8 @@ if ($LASTEXITCODE -eq 0) {
 	Copy-Item -LiteralPath "$PSScriptRoot/../Resources/PowerRaker.Format.ps1xml" -Destination $destinationFolder 
 
 	$scriptBlock = {
-   
+		
+
 		if ($IsLinux -or $isMacOS) {
 			$destinationFolder = "$HOME/.local/share/powershell/Modules/PowerRaker"
 		}
