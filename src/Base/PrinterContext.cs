@@ -27,6 +27,9 @@ namespace PowerRaker
             this.APIKey = APIKey;
             this.Token = null;
             Current = this;
+
+            var output = RestHelper.ExecuteGetRequest(this,"/printer/info");
+
         }
 
         public PrinterContext(string printer, string? username, SecureString? password, string? source)
@@ -98,7 +101,7 @@ namespace PowerRaker
             }
         }
 
-        private static string ExecuteRequest(PrinterContext connection, string endPoint, HttpMethod method, object? payload)
+        private static string ExecuteRequest(PrinterContext connection, string endPoint, HttpMethod method, object? payload, int timeoutSeconds = 100)
         {
             StringContent? content = null;
             if (payload != null)
@@ -109,6 +112,7 @@ namespace PowerRaker
             var url = connection.Printer + endPoint;
 
             var client = connection.HttpClient;
+            client.Timeout = TimeSpan.FromSeconds(timeoutSeconds);
 
             var httpRequestMessage = new HttpRequestMessage(method, url)
             {
