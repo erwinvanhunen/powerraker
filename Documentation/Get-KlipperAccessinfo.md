@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KlipperAccessinfo
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves information about the authorization endpoints.
 
 ## SYNTAX
 
@@ -17,16 +17,16 @@ Get-KlipperAccessinfo [-Connection <PrinterContext>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Returns information about authorization endpoints, such as default_source and available_sources.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KlipperAccessInfo
 ```
 
-{{ Add example description here }}
+Returns information about authorization endpoints, such as default_source and available_sources.
 
 ## PARAMETERS
 

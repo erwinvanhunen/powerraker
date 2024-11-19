@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KlipperAnnouncement
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves a list of current announcements
 
 ## SYNTAX
 
@@ -17,16 +17,16 @@ Get-KlipperAnnouncement [-IncludeDismissed] [-Connection <PrinterContext>] [<Com
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Retrieves a list of current announcements.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KlipperAnnouncement -IncludedDismissed
 ```
 
-{{ Add example description here }}
+Retrieves a list of current announcements, including the already dismissed announcements.
 
 ## PARAMETERS
 
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeDismissed
-{{ Fill IncludeDismissed Description }}
+Specify to include already dismissed announcements.
 
 ```yaml
 Type: SwitchParameter

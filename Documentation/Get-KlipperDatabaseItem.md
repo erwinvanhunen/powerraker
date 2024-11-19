@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KlipperDatabaseItem
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves an item from a specified namespace. 
 
 ## SYNTAX
 
@@ -17,16 +17,25 @@ Get-KlipperDatabaseItem -Namespace <String> [-Key <String>] [-Connection <Printe
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Retrieves an item from a specified namespace. The key parameter may be omitted, in which case an object representing the entire namespace will be returned in the value field. If the key is provided and does not exist in the database an error will be returned.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> $i = Get-KlipperDatabaseItem -Namespace "webcams"
+PS C:> $i.Value.'27da54de-102d-4d3a-ad5b-0adce9034762'.name
 ```
 
-{{ Add example description here }}
+Returns the name of the first webcam. Notice that ID will be different on your environment.
+
+### Example 2
+```
+PS C:\> $i = Get-KlipperDatabaseItem -Namespace "webcams" -Key '27da54de-102d-4d3a-ad5b-0adce9034762'
+PS C:> $i.Value.name
+```
+
+Returns the name of the first webcam. Notice that ID will be different on your environment.
 
 ## PARAMETERS
 
@@ -46,7 +55,7 @@ Accept wildcard characters: False
 ```
 
 ### -Key
-{{ Fill Key Description }}
+The key to retrieve from the namepace
 
 ```yaml
 Type: String

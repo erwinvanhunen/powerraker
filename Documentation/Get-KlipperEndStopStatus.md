@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KlipperEndStopStatus
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves the current endstop status.
 
 ## SYNTAX
 
@@ -17,13 +17,13 @@ Get-KlipperEndStopStatus [-Connection <PrinterContext>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Retrieves the current endstop status, where the values can be "open" or "triggered".
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KlipperEndStopStatus
 ```
 
 {{ Add example description here }}

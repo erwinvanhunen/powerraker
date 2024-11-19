@@ -8,25 +8,25 @@ schema: 2.0.0
 # Add-KlipperUser
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a user to the printer configuration
 
 ## SYNTAX
 
 ```
-Add-KlipperUser -Username <String> -Password <String> [-Connection <PrinterContext>] [<CommonParameters>]
+Add-KlipperUser -Username <String> -Password <SecureString> [-Connection <PrinterContext>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Adds a user to the printer configuration, allowing the user to login using the Moonraker API and subsequently use the commandlets.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KlipperUser -Username "TestUser1" -Password (Read-Host -AsSecureString -Prompt "Enter Password")
 ```
 
-{{ Add example description here }}
+This will prompt you to enter a password. A new user, "TestUser1" will be added to the configuration and the password entered will be set for that user.
 
 ## PARAMETERS
 
@@ -46,10 +46,10 @@ Accept wildcard characters: False
 ```
 
 ### -Password
-{{ Fill Password Description }}
+The password for the user.
 
 ```yaml
-Type: String
+Type: SecureString
 Parameter Sets: (All)
 Aliases:
 
@@ -61,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -Username
-{{ Fill Username Description }}
+The username for the user.
 
 ```yaml
 Type: String

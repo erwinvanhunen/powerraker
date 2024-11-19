@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KlipperConnection
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Returns the current connection as an object. Notice that this is only needed if you want to use multiple connections to different printers in a single script.
 
 ## SYNTAX
 
@@ -17,21 +17,29 @@ Get-KlipperConnection [-Connection <PrinterContext>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Returns the current connection as an object. This allows you use to use the connection with multiple printers. See examples for usage. Also see the help for Connect-KlipperPrinter as that cmdlet can return the connection at connection time.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Connect-KlipperPrinter -Url http://printer1
+PS C:\> $connection1 = Get-KlipperConnection
+PS C:\> Connect-KlipperPrinter -Url http://printer2
+PS C:\> $connection2 = Get-KlipperConnection
+PS C:\> Get-KlipperJob -Connection $connection1
+PS C:\> Get-KlipperJob -Connection $connection2
 ```
 
-{{ Add example description here }}
+This example connects to two printers and retrieves the current jobs of those printers.
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## PARAMETERS
 
 ### -Connection
-Optional connection object to handle connections with multiple printers.
+{{ Fill Connection Description }}
 
 ```yaml
 Type: PrinterContext

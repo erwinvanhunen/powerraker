@@ -1,10 +1,11 @@
 ﻿using System.Management.Automation;
+using System.Security.Cryptography;
 using PowerRaker.Model.Users;
 
 namespace PowerRaker
 {
 
-    [Cmdlet(VerbsCommunications.Disconnect, "Printer")]
+    [Cmdlet(VerbsCommunications.Disconnect, PREFIX + "Printer")]
     public class DisconnectPrinter : KlipperCmdlet
     {
         protected override void ExecuteCmdlet()

@@ -17,8 +17,7 @@ Get-KlipperCachedGCodeResponses [-Connection <PrinterContext>] [-Count <Int32>] 
 ```
 
 ## DESCRIPTION
-This cmdlet returns the cached GCode responses.
-Default count is 100.
+This cmdlet returns the cached GCode responses. The default number of items it returns is 100.
 
 ## EXAMPLES
 

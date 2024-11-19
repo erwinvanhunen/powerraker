@@ -6,9 +6,9 @@ namespace PowerRaker.Utils
 {
     internal static class RestHelper
     {
-        public static string? ExecuteGetRequest(PrinterContext connection, string endPoint, int timeoutSeconds = 100)
+        public static string? ExecuteGetRequest(PrinterContext connection, string endPoint)
         {
-            return ExecuteRequest(connection, endPoint, HttpMethod.Get, null, false, timeoutSeconds);
+            return ExecuteRequest(connection, endPoint, HttpMethod.Get, null, false);
         }
 
         public static byte[] ExecuteGetRequestBinary(PrinterContext connection, string endPoint)
@@ -34,7 +34,7 @@ namespace PowerRaker.Utils
             return ExecuteRequest(connection, endPoint, HttpMethod.Delete, payload);
         }
 
-        private static string? ExecuteRequest(PrinterContext connection, string endPoint, HttpMethod method, object? payload, bool donowait = false, int timeoutSeconds = 100)
+        private static string? ExecuteRequest(PrinterContext connection, string endPoint, HttpMethod method, object? payload, bool donowait = false)
         {
             StringContent? content = null;
             if (payload != null)
@@ -45,7 +45,7 @@ namespace PowerRaker.Utils
             var url = connection.Printer + endPoint;
 
             var client = connection.HttpClient;
-            client.Timeout = TimeSpan.FromSeconds(timeoutSeconds);
+            
             var httpRequestMessage = new HttpRequestMessage(method, url)
             {
                 Content = content

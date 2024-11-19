@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KlipperDatabaseInfo
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Lists all namespaces with read and/or write access. Also lists database backup files.
 
 ## SYNTAX
 
@@ -17,16 +17,14 @@ Get-KlipperDatabaseInfo [-Connection <PrinterContext>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Lists all namespaces with read and/or write access. Also lists database backup files.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KlipperDatabaseInfo
 ```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 

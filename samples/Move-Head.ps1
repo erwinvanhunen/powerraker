@@ -12,7 +12,6 @@ param(
     [Single] $Position = 10
 )
 
-Connect-KlipperPrinter -Printer http://nucker
 if ($PSCmdlet.ParameterSetName -eq "Step") {
     $move = {
         Invoke-KlipperGCode -Code "G91" 
